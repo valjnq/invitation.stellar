@@ -7,38 +7,33 @@
   <link rel="stylesheet" href="css/satoshi.css">
   <link rel="icon" type="image/png" href="favicon_128x128.png">
   <style>
-  html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
+    html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
 
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Satoshi', sans-serif;
-    background-color: #ffffff;
-    transition: background-color 1s ease;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Satoshi', sans-serif;
+      background-color: #ff80cc;
+      transition: background-color 1s ease;
+    }
 
-    /* --- Animations --- */
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
     @keyframes pulseShrink {
       0% { transform: scale(1); }
       50% { transform: scale(0.93); }
       100% { transform: scale(1); }
     }
-
     @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
-
     @keyframes shine {
       0% { left: -75%; }
       50% { left: 125%; }
       100% { left: 125%; }
     }
 
-    /* --- PAGE 1 --- */
     .page1 {
       position: fixed;
       background: transparent;
@@ -100,7 +95,6 @@
       }
     }
 
-    /* --- PAGE 2 --- */
     .page2 {
       background: transparent;
       position: fixed;
@@ -128,19 +122,11 @@
     }
 
     .page2 img            { animation-delay: 17s; }
-    .page2 iframe         { animation-delay: 17.7s; }
     .page2 .ticket-button { animation-delay: 18.4s; }
 
     .page2 img {
       width: 100%;
       height: auto;
-    }
-
-    .page2 iframe {
-      width: 100%;
-      height: calc(100vw * 0.5625);
-      max-height: 40vh;
-      border: none;
     }
 
     .ticket-button {
@@ -173,38 +159,43 @@
       transform: skewX(-20deg);
       animation: shine 2.5s infinite;
     }
+
     .video-launcher {
-  position: relative;
-  display: inline-block;
-  max-width: 100%;
-  cursor: pointer;
-}
+      position: relative;
+      display: none;
+      max-width: 100%;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
 
-.video-launcher img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
+    .page2.fade-active .video-launcher {
+      display: inline-block;
+      opacity: 1;
+    }
 
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 64px;
-  color: white;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  padding: 20px;
-  pointer-events: none;
-}
+    .video-launcher img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
 
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 64px;
+      color: white;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      padding: 20px;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
-
-  <!-- Page 1 -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <div class="text-wrapper">
@@ -217,76 +208,65 @@
     </div>
   </div>
 
-  <!-- Page 2 -->
   <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
-
-<div class="video-launcher">
-  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-  <div class="play-button">&#9658;</div>
-</div>
-
-
-
+    <div class="video-launcher">
+      <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
+      <div class="play-button">&#9658;</div>
+    </div>
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
     </div>
   </div>
 
-  <!-- Activation différée de la page2 -->
-<script>
-  setTimeout(() => {
-    document.querySelector('.page2').classList.add('fade-active');
-    document.body.style.backgroundColor = '#000000';
-  }, 16000); // active page2 et change fond en noir à 15s
-</script>
+  <script>
+    setTimeout(() => {
+      document.querySelector('.page2').classList.add('fade-active');
+      document.body.style.backgroundColor = '#000000';
+    }, 16000);
+  </script>
 
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-  let player;
-  let iframeContainer;
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    let iframeContainer;
 
-  document.getElementById('play-video').addEventListener('click', () => {
-    // Crée le conteneur de l'iframe
-    iframeContainer = document.createElement('div');
-    iframeContainer.id = 'player';
-    iframeContainer.style.position = 'fixed';
-    iframeContainer.style.top = 0;
-    iframeContainer.style.left = 0;
-    iframeContainer.style.width = '100vw';
-    iframeContainer.style.height = '100vh';
-    iframeContainer.style.zIndex = 9999;
-    iframeContainer.style.backgroundColor = 'black';
+    document.getElementById('play-video').addEventListener('click', () => {
+      iframeContainer = document.createElement('div');
+      iframeContainer.id = 'player';
+      iframeContainer.style.position = 'fixed';
+      iframeContainer.style.top = 0;
+      iframeContainer.style.left = 0;
+      iframeContainer.style.width = '100vw';
+      iframeContainer.style.height = '100vh';
+      iframeContainer.style.zIndex = 9999;
+      iframeContainer.style.backgroundColor = 'black';
 
-    document.body.appendChild(iframeContainer);
+      document.body.appendChild(iframeContainer);
 
-    // Crée le lecteur YouTube via l'API
-    player = new YT.Player('player', {
-      videoId: 'FW7si6AU_FU', // ID de ta vidéo
-      playerVars: {
-        autoplay: 1,
-        controls: 1,
-        rel: 0,
-        modestbranding: 1,
-        showinfo: 0
-      },
-      events: {
-        'onStateChange': onPlayerStateChange
-      }
+      player = new YT.Player('player', {
+        videoId: 'FW7si6AU_FU',
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1,
+          showinfo: 0
+        },
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
     });
-  });
 
-  function onPlayerStateChange(event) {
-    // Code 0 = vidéo terminée
-    if (event.data === YT.PlayerState.ENDED) {
-      if (iframeContainer) {
-        iframeContainer.remove();
-        player = null;
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        if (iframeContainer) {
+          iframeContainer.remove();
+          player = null;
+        }
       }
     }
-  }
-</script>
-
-
+  </script>
 </body>
 </html>
