@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #33fff6;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -59,10 +59,11 @@
       opacity: 0;
       font-size: 1.2rem;
       line-height: 1.4;
-      margin: 12px 0;
+      margin: 0 0 14px 0;
       animation: fadeIn 1s ease-out forwards;
       text-align: center;
       max-width: 90%;
+      font-weight: 400;
     }
 
     .line1 { animation-delay: 3.5s; }
@@ -73,7 +74,10 @@
     .line6 { animation-delay: 13.5s; }
 
     @media (min-width: 768px) {
-      .text-line { font-size: 2.5rem; }
+      .text-line {
+        font-size: 2.5rem;
+        font-weight: 300;
+      }
     }
 
     /* --- PAGE 2 --- */
