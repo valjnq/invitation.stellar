@@ -10,7 +10,7 @@
     html{margin:0;padding:0;overflow:hidden;}
     body{
       margin:0;padding:0;font-family:'Satoshi',sans-serif;
-      background:#ff80cc;transition:background-color 1s ease;
+      background:#ffffff;transition:background-color 1s ease;
     }
 
     /* Animations ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ */
@@ -70,10 +70,17 @@
 
     /* Bouton billetterie --------------------------------------- */
     .ticket-button{display:flex;justify-content:center; margin: 0 0 40px 0;}
-    .ticket-button a{
-      background:#000;color:#fff;padding:15px 40px;font-size:1.5rem;font-weight:700;
-      border-radius:30px;text-decoration:none;animation:pulseGlow 2.5s ease-in-out infinite;
-    }
+.ticket-button a {
+  background: #000;
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  opacity: 0;
+  animation: fadeIn 0.7s ease-out forwards 18.4s, pulseGlow 2.5s ease-in-out infinite 19.1s;
+}
     .ticket-button a.pulse {
   animation: pulseGlow 2.5s ease-in-out infinite;
 }
