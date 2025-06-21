@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #ffffff;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -52,32 +52,29 @@
       animation-delay: 0.5s, 1.5s;
     }
 
+    .text-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 30px;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-.text-wrapper {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 30px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-.text-line {
-  display: block;
-  opacity: 0;
-  font-size: 1.2rem;
-  line-height: 1.4;
-  margin: 6px 0;
-  animation: fadeIn 1s ease-out forwards;
-  text-align: center;
-  width: 90%;
-  font-weight: 700;
-  margin-left: auto;
-  margin-right: auto;
-}
-
+    .text-line {
+      display: block;
+      opacity: 0;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin: 2px 0;
+      animation: fadeIn 1s ease-out forwards;
+      text-align: center;
+      width: 90%;
+      font-weight: 700;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     .line1 { animation-delay: 3.5s; }
     .line2 { animation-delay: 5.5s; }
@@ -151,6 +148,19 @@
       transform: skewX(-20deg);
       animation: shine 2.5s infinite;
     }
+
+    /* --- PAGE 2 : apparition différée des éléments --- */
+    .page2 img,
+    .page2 iframe,
+    .page2 .ticket-button {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .page2 img            { animation-delay: 19.3s; }
+    .page2 iframe         { animation-delay: 20.0s; }
+    .page2 .ticket-button { animation-delay: 20.7s; }
+
   </style>
 </head>
 <body>
