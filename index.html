@@ -27,10 +27,11 @@
     }
 
     .image-container img {
-      width: 250px;
+      width: 200px;
       max-width: 80%;
       height: auto;
       animation: pulse 4s ease-in-out infinite;
+      transform-origin: center;
     }
 
     .text-container {
@@ -57,17 +58,13 @@
     }
 
     @keyframes pulse {
-      0% {
+      0%, 100% {
+        filter: brightness(1) blur(0);
         transform: scale(1);
-        opacity: 1;
       }
       50% {
-        transform: scale(1.07);
-        opacity: 0.9;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
+        filter: brightness(1.4) blur(2px);
+        transform: scale(1.03);
       }
     }
   </style>
