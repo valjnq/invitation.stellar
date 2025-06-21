@@ -12,130 +12,128 @@
     html,body{
       background:#ff80cc;
       font-family:'Satoshi',sans-serif;
-      overflow-x:hidden;
       color:#000;
+      overflow-x:hidden;
     }
 
-    /* ---------- Animations ---------- */
+    /* ------ Animations ------ */
     @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes fadeOut{from{opacity:1}to{opacity:0}}
+    /* disparition douce : opacité + hauteur */
+    @keyframes vanish{
+      0%{opacity:1;max-height:1000px;padding-top:10px}
+      100%{opacity:0;max-height:0;padding-top:0}
+    }
+    @keyframes shine{0%{left:-75%}100%{left:125%}}
 
-    /* ---------- 1. Logo cercle ---------- */
+    /* ------ 1 / Logo cercle ------ */
     .image-container{
       text-align:center;
-      padding:5px 0;
-      animation:fadeOut 1s ease forwards;
-      animation-delay:10.5s;          /* disparaît à 10,5 s */
+      animation:vanish 1s ease forwards;
+      animation-delay:10.5s;           /* même timing que le texte */
+      overflow:hidden;
     }
     .image-container img{
       width:250px;max-width:80%;height:auto;
       animation:pulse 3s ease-in-out infinite;
     }
 
-    /* ---------- 2. Texte intro ---------- */
+    /* ------ 2 / Texte intro ------ */
     .text-container{
       text-align:center;
       padding:10px 15px;
-      animation:fadeOut 1s ease forwards;
-      animation-delay:10.5s;          /* même timing que le logo */
+      overflow:hidden;
+      animation:vanish 1s ease forwards;
+      animation-delay:10.5s;
     }
     .text-line{
-      opacity:0;
+      opacity:0;line-height:1.4;font-size:1.6rem;margin:.2rem 0;
       animation:fadeIn .8s ease forwards;
-      line-height:1.4;
-      font-size:1.6rem;
-      margin:.2rem 0;
     }
     .line1{animation-delay:1.5s}.line2{animation-delay:3s}.line3{animation-delay:4.5s}
     .line4{animation-delay:6s}.line5{animation-delay:7.5s}.line6{animation-delay:9s}
 
-    /* ---------- Hauteur de l’image STARS pour décaler la suite ---------- */
-    :root{ --star-h:35vw; }           /* 35 % de la largeur écran ≈ ratio logo */
-
-    /* ---------- 3. Image STARS collée en haut ---------- */
+    /* ------ 3 / Image STARS ------ */
     .final-title{
-      position:fixed;                 /* colle en haut */
-      top:0;left:0;width:100%;
-      z-index:5;
       opacity:0;
       animation:fadeIn 2s ease forwards;
       animation-delay:12s;
+      text-align:center;
+      margin:0;
     }
-    .final-title img{width:100%;height:auto;display:block;}
+    .final-title img{
+      width:100%;height:auto;display:block;
+    }
 
-    /* ---------- 4. Vidéo ---------- */
+    /* ------ 4 / Vidéo ------ */
     .video-container{
-      margin-top:calc(var(--star-h)); /* commence juste sous l’image */
-      padding:0 10px;
       opacity:0;
       animation:fadeIn 2s ease forwards;
       animation-delay:13s;
+      max-width:100%;
+      margin:10px auto 0;
+      padding:0 10px;
     }
     .video-container iframe{
       width:100%;
-      height:calc(100vw*0.5625);      /* 16:9 responsive */
+      height:calc(100vw*0.5625);       /* 16 : 9 */
       max-height:80vh;border:none;
     }
 
-    /* ---------- 5. Bouton ---------- */
+    /* ------ 5 / Bouton ------ */
     .ticket-button{
       display:flex;justify-content:center;
-      margin:30px auto 60px;
       opacity:0;
       animation:fadeIn 2s ease forwards;
       animation-delay:14s;
+      margin:30px auto 60px;
     }
     .ticket-button a{
       background:#000;color:#ff80cc;text-decoration:none;
       padding:15px 40px;border-radius:30px;font-size:1.5rem;font-weight:500;
       box-shadow:0 0 20px #0006;position:relative;overflow:hidden;
     }
-    @keyframes shine{0%{left:-75%}100%{left:125%}}
     .ticket-button a::before{
       content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
       background:linear-gradient(120deg,transparent,#ff80cc66,transparent);
       transform:skewX(-20deg);animation:shine 2.5s infinite;
     }
 
-    /* Texte + vidéo plus grands sur desktop */
-    @media(min-width:768px){
-      .text-line{font-size:2.5rem}
-      :root{ --star-h:25vw; }         /* image plus aplatie sur grands écrans */
-    }
+    /* Texte plus grand sur desktop */
+    @media(min-width:768px){.text-line{font-size:2.5rem}}
   </style>
 </head>
 <body>
 
-  <!-- 1. Logo cercle -->
+  <!-- 1 / Logo cercle animé -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
-  <!-- 2. Texte intro -->
+  <!-- 2 / Texte d’intro -->
   <div class="text-container">
-    <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
+    <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
     <h1 class="text-line line2">Rassure-toi, tu n’es pas seul.</h1>
-    <h1 class="text-line line3">Aujourd’hui, notre attention se tourne vers une réalité limitée.</h1>
+    <h1 class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</h1>
     <h1 class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
     <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- 3. Image STARS -->
+  <!-- 3 / Image STARS collée en haut -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <!-- 4. Vidéo -->
+  <!-- 4 / Vidéo -->
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
+    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
             title="Stellar Teaser"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
 
-  <!-- 5. Bouton -->
+  <!-- 5 / Bouton -->
   <div class="ticket-button">
     <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
