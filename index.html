@@ -9,24 +9,13 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #ffffff;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
 
     /* --- Animations --- */
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
     @keyframes pulseShrink {
       0% { transform: scale(1); }
@@ -53,7 +42,7 @@
       text-align: center;
       padding: 0px 10px 0px;
       box-sizing: border-box;
-      animation: hidePage 1s ease forwards 16.5s;
+      animation: hidePage 1s ease forwards 14s;
       z-index: 1;
     }
 
@@ -126,12 +115,12 @@
     .page2 iframe,
     .page2 .ticket-button {
       opacity: 0;
-      animation: fadeInUp 0.8s ease-out forwards;
+      animation: fadeIn 1s ease-out forwards;
     }
 
-    .page2 img            { animation-delay: 18s; }
-    .page2 iframe         { animation-delay: 18.7s; }
-    .page2 .ticket-button { animation-delay: 19.4s; }
+    .page2 img            { animation-delay: 15s; }
+    .page2 iframe         { animation-delay: 15.7s; }
+    .page2 .ticket-button { animation-delay: 16.4s; }
 
     .page2 img {
       width: 100%;
@@ -210,7 +199,7 @@
   <script>
     setTimeout(() => {
       document.querySelector('.page2').classList.add('fade-active');
-    }, 18000); // à 18 secondes
+    }, 15000); // à 15 secondes
   </script>
 
 </body>
