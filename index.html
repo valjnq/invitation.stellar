@@ -16,34 +16,49 @@
       overflow-x: hidden;
     }
 
+    /* ANIMATIONS */
     @keyframes pulse {
       0%   { transform: scale(1); opacity: 1; }
       50%  { transform: scale(1.07); opacity: 0.9; }
       100% { transform: scale(1); opacity: 1; }
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes hideBlock {
-      0%   { opacity: 1; height: auto; }
-      99%  { opacity: 0; height: auto; display: block; }
-      100% { opacity: 0; height: 0; display: none; }
-    }
-
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes shine {
       0% { left: -75%; }
       50% { left: 125%; }
       100% { left: 125%; }
     }
 
-    .image-container,
-    .text-container {
+    @keyframes hideBlock {
+      0% {
+        opacity: 1;
+        max-height: 500px;
+        margin-bottom: 20px;
+      }
+      99% {
+        opacity: 0;
+        max-height: 500px;
+        margin-bottom: 0;
+        display: block;
+      }
+      100% {
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+        overflow: hidden;
+        display: none;
+      }
+    }
+
+    /* LOGO PULSE QUI DISPARAIT */
+    .image-container {
+      text-align: center;
+      padding-top: 5px;
       animation: hideBlock 1s ease-out forwards;
       animation-delay: 10.5s;
       animation-fill-mode: forwards;
-    }
-
-    .image-container {
-      text-align: center;
+      overflow: hidden;
     }
 
     .image-container img {
@@ -53,9 +68,14 @@
       animation: pulse 3s ease-in-out infinite;
     }
 
+    /* TEXTE ANIMÉ QUI DISPARAIT */
     .text-container {
       text-align: center;
-      padding: 10px 15px;
+      padding: 10px 15px 0;
+      animation: hideBlock 1s ease-out forwards;
+      animation-delay: 10.5s;
+      animation-fill-mode: forwards;
+      overflow: hidden;
     }
 
     .text-line {
@@ -74,13 +94,14 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
+    /* IMAGE STARS */
     .final-title {
       opacity: 0;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
       animation-fill-mode: forwards;
       text-align: center;
-      margin: 0;
+      margin-top: 0;
     }
 
     .final-title img {
@@ -90,6 +111,7 @@
       display: block;
     }
 
+    /* VIDEO */
     .video-container {
       opacity: 0;
       max-width: 100%;
@@ -107,6 +129,7 @@
       border: none;
     }
 
+    /* BOUTON */
     .ticket-button {
       display: flex;
       justify-content: center;
@@ -149,7 +172,7 @@
 </head>
 <body>
 
-  <!-- Logo cercle -->
+  <!-- Cercle animé -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
@@ -164,12 +187,12 @@
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
-  <!-- Image STELLAR -->
+  <!-- Image STARS -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <!-- Vidéo -->
+  <!-- Vidéo responsive -->
   <div class="video-container">
     <iframe
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
