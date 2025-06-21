@@ -129,40 +129,36 @@
       height: auto;
     }
 
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-    }
+   /* --- BOUTON BILLETTERIE ----------------------------------- */
+.ticket-button {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
 
-    .ticket-button a {
-      background: #000;
-  background-image: linear-gradient(to right, #D163AA, #8D7BB5, #3B80BB);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 30px;
-      box-shadow: 0 0 20px #0006;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-    }
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
+  50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
+}
 
-    .ticket-button a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
-    }
+.ticket-button a {
+  background: #000;          /* fond noir plein */
+  color: #fff;               /* texte blanc */
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  /* HALO pulsant blanc */
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* supprime l’ancien effet “shine” éventuel */
+.ticket-button a::before { display:none !important; }
+
 
 .video-launcher {
   opacity: 0;
@@ -185,13 +181,7 @@
   border-radius: 10px;
 }
 
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
+
 
 
 
@@ -216,15 +206,6 @@
     <img src="bimbim.png" alt="Titre Stellar">
 <div class="video-launcher" id="video-launcher">
   <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-<div class="play-button">
-  <svg viewBox="0 0 100 100" width="80" height="80">
-    <!-- Cercle gris semi-transparent -->
-    <circle cx="50" cy="50" r="40" fill="rgba(0, 0, 0, 0.4)" />
-
-    <!-- Triangle transparent (trou) -->
-    <path d="M40,35 L70,50 L40,65 Z" fill="transparent" />
-  </svg>
-</div>
 
 </div>
 
