@@ -6,26 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    :root {
-      --rose: #ff80cc;
-      --noir: #000;
-    }
-
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--rose);
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
-      color: var(--noir);
+      color: #000;
       overflow-x: hidden;
-      text-align: center;
     }
 
     @keyframes pulse {
-      0%   { transform: scale(1); opacity: 1; }
-      50%  { transform: scale(1.07); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
+      0%   { transform: scale(1);     opacity: 1; }
+      50%  { transform: scale(1.07);  opacity: 0.9; }
+      100% { transform: scale(1);     opacity: 1; }
     }
 
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
@@ -33,34 +27,22 @@
     @keyframes fadeWord { from {opacity: 0;} to {opacity: 1;} }
 
     @keyframes hideText {
-      0% { opacity: 1; }
-      99% { opacity: 0; display: block; }
+      0%   { opacity: 1; }
+      99%  { opacity: 0; display: block; }
       100% { opacity: 0; display: none; }
     }
 
-    /* ---------- Cercle noir initial ---------- */
+    /* ---------- Image cercle initial ---------- */
     .image-container {
-      position: relative;
+      text-align: center;
       padding-top: 5px;
     }
 
-    .logo-img {
+    .image-container img {
       width: 250px;
       max-width: 80%;
       height: auto;
       animation: pulse 3s ease-in-out infinite;
-      animation-delay: 0s;
-      transition: opacity 1s ease-out;
-    }
-
-    /* ---------- Remplacement par stars.png ---------- */
-    .stars-img {
-      display: none;
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 13s;
     }
 
     /* ---------- Texte principal ---------- */
@@ -76,7 +58,7 @@
       opacity: 0;
       margin: 0;
       line-height: 1.3;
-      font-size: 2rem;
+      font-size: 1.5rem; /* plus petit qu'avant */
       animation: fadeIn 0.8s ease-out forwards;
       animation-fill-mode: forwards;
     }
@@ -92,6 +74,7 @@
     .word {
       opacity: 0;
       display: inline-block;
+      font-size: 1.5rem; /* cohérent avec les lignes */
       animation: fadeWord 0.5s ease-out forwards;
     }
 
@@ -99,44 +82,68 @@
     .word-2 { animation-delay: 9.5s; }
     .word-3 { animation-delay: 10s; }
 
-    /* ---------- Bouton ---------- */
-    .button-container {
+    /* ---------- Image finale remplaçant le cercle ---------- */
+    .final-image {
+      display: none;
       opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-      animation-delay: 14s;
-      margin-top: 30px;
+      text-align: center;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 13.2s;
+      animation-fill-mode: forwards;
     }
 
-    .btn {
-      padding: 16px 40px;
-      background: black;
-      color: var(--rose);
-      border: none;
-      border-radius: 20px;
+    .final-image img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
+
+    /* ---------- Bouton billetterie ---------- */
+    .billet-button {
+      display: none;
+      opacity: 0;
+      margin: 30px auto 0;
+      text-align: center;
+      font-family: 'Satoshi', sans-serif;
       font-size: 1.2rem;
       font-weight: 400;
+      color: #ff80cc;
+      background-color: #000;
+      border: none;
+      border-radius: 20px;
+      padding: 15px 40px;
       cursor: pointer;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-      transition: box-shadow 0.3s ease;
+      animation: fadeIn 2s ease-out forwards, pulse 3s ease-in-out infinite;
+      animation-delay: 13.5s, 15.5s;
+      animation-fill-mode: forwards;
     }
 
-    .btn:hover {
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+    @media (max-width: 767px) {
+      .final-image {
+        position: relative;
+        top: 20px;
+        margin-bottom: 10px;
+      }
+
+      .billet-button {
+        font-size: 1rem;
+        padding: 12px 30px;
+      }
     }
 
     @media (min-width: 768px) {
-      .text-line { font-size: 3rem; line-height: 1.2; }
-      .btn { font-size: 1.5rem; }
+      .text-line { font-size: 2.2rem; line-height: 1.2; }
     }
   </style>
 </head>
 <body>
 
-  <div class="image-container">
-    <img src="logo.png" class="logo-img" id="logo" alt="logo">
-    <img src="stars.png" class="stars-img" id="stars" alt="Titre Stellar">
+  <!-- Cercle initial qui pulse -->
+  <div class="image-container" id="initial-circle">
+    <img src="logo.png" alt="Invitation Stellar">
   </div>
 
+  <!-- Texte -->
   <div class="text-container">
     <h1 class="text-line line1">Voici l’aube d’un nouveau possible.</h1>
     <h1 class="text-line line2">Ton esprit en est l’architecte.</h1>
@@ -151,14 +158,24 @@
     <h1 class="text-line line7">Entre dans...</h1>
   </div>
 
-  <div class="button-container">
-    <button class="btn" onclick="window.location.href='https://www.billetweb.fr/stellar';">BILLETTERIE</button>
+  <!-- Image finale stars -->
+  <div class="final-image" id="final-stars">
+    <img src="stars.png" alt="Titre Stellar">
   </div>
 
+  <!-- Bouton billetterie -->
+  <div style="text-align: center;">
+    <button class="billet-button" onclick="window.open('https://www.billetweb.fr/stellar', '_blank')">
+      BILLETTERIE
+    </button>
+  </div>
+
+  <!-- Script pour changement d’éléments -->
   <script>
     setTimeout(() => {
-      document.getElementById("logo").style.display = "none";
-      document.getElementById("stars").style.display = "block";
+      document.getElementById('initial-circle').style.display = 'none';
+      document.getElementById('final-stars').style.display = 'block';
+      document.querySelector('.billet-button').style.display = 'inline-block';
     }, 13000);
   </script>
 
