@@ -7,128 +7,219 @@
   <link rel="stylesheet" href="css/satoshi.css">
   <link rel="icon" type="image/png" href="favicon_128x128.png">
   <style>
-    html, body {
+    html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
       margin: 0;
       padding: 0;
       font-family: 'Satoshi', sans-serif;
-      background-color: #ffffff;
-      overflow: hidden;
+      background-color: #ff80cc;
       transition: background-color 1s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes pulseShrink {
+      0% { transform: scale(1); }
+      50% { transform: scale(0.93); }
+      100% { transform: scale(1); }
     }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
-      50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
+    @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
+    @keyframes shine {
+      0% { left: -75%; }
+      50% { left: 125%; }
+      100% { left: 125%; }
     }
 
     .page1 {
       position: fixed;
+      background: transparent;
       inset: 0;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      animation: fadeOut 1s ease forwards;
-      animation-delay: 16s;
+      text-align: center;
+      padding: 0px 10px 0px;
+      box-sizing: border-box;
+      animation: hidePage 1s ease forwards 16s;
       z-index: 1;
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        pointer-events: none;
-      }
     }
 
     .page1 img {
       width: 250px;
       max-width: 80%;
       opacity: 0;
+      animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
+      animation-delay: 0.5s, 1.5s;
+    }
+
+    .text-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 80px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .text-line {
+      display: block;
+      opacity: 0;
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin: 2px 0;
       animation: fadeIn 1s ease-out forwards;
-      animation-delay: 0.5s;
+      text-align: center;
+      width: 90%;
+      font-weight: 700;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .line1 { animation-delay: 3.5s; }
+    .line2 { animation-delay: 5.5s; }
+    .line3 { animation-delay: 7.5s; }
+    .line4 { animation-delay: 9.5s; }
+    .line5 { animation-delay: 11.5s; }
+    .line6 { animation-delay: 13.5s; }
+
+    @media (min-width: 768px) {
+      .text-line {
+        font-size: 2.5rem;
+        font-weight: 300;
+      }
     }
 
     .page2 {
+      background: transparent;
       position: fixed;
       inset: 0;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       padding: 20px 10px;
-      opacity: 0;
+      box-sizing: border-box;
+      opacity: 1;
       pointer-events: none;
-      transition: opacity 1s ease;
     }
 
-    .page2.active {
-      opacity: 1;
+    .page2.fade-active {
       pointer-events: auto;
     }
 
     .page2 img,
     .page2 iframe,
-    .ticket-button {
+    .page2 .ticket-button {
       opacity: 0;
       animation: fadeIn 1s ease-out forwards;
     }
 
-    .page2 img     { animation-delay: 17s; }
-    .page2 iframe  { animation-delay: 17.4s; }
-    .ticket-button { animation-delay: 18.4s; }
+    .page2 img            { animation-delay: 17s; }
+    .page2 .ticket-button { animation-delay: 18.4s; }
 
     .page2 img {
       width: 100%;
       height: auto;
     }
 
-    .page2 iframe {
-      width: 100%;
-      max-width: 800px;
-      aspect-ratio: 16/9;
-      border-radius: 12px;
-      border: none;
-    }
+   /* --- BOUTON BILLETTERIE ----------------------------------- */
+.ticket-button {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
 
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-    }
+@keyframes pulseGlow {
+  0%,100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
+  50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
+}
 
-    .ticket-button a {
-      background: #000;
-      color: #fff;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 30px;
-      text-decoration: none;
-      animation: pulseGlow 2.5s ease-in-out infinite;
-    }
+.ticket-button a {
+  background: #000;          /* fond noir plein */
+  color: #fff;               /* texte blanc */
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  /* HALO pulsant blanc */
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* supprime l’ancien effet “shine” éventuel */
+.ticket-button a::before { display:none !important; }
+
+
+.video-launcher {
+  opacity: 0;
+  position: relative;
+  max-width: 100%;
+  cursor: pointer;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 17.7s;
+}
+
+
+.page2.fade-active .video-launcher {
+  display: inline-block;
+}
+
+.video-launcher img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+
+
+
+
+
+
   </style>
 </head>
 <body>
-
-  <!-- Page 1 avec logo -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
+    <div class="text-wrapper">
+      <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
+      <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
+      <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
+      <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
+      <p class="text-line line5">Il suffira de mettre un casque.</p>
+      <p class="text-line line6">Il suffira de jouer à…</p>
+    </div>
   </div>
 
-  <!-- Page 2 avec logo Stellar + vidéo + bouton -->
-  <div class="page2" id="page2">
+  <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
+<div class="video-launcher" id="video-launcher">
+  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
 
-    <iframe 
-      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&controls=1" 
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+</div>
+
+<div class="video-frame-container" id="video-frame-container" style="display: none;">
+  <iframe 
+    src="https://www.youtube.com/embed/FW7si6AU_FU?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+    frameborder="0" 
+    allowfullscreen 
+    allow="autoplay; encrypted-media" 
+    style="width: 100%; height: calc(100vw * 0.5625); max-height: 50vh; border-radius: 12px;">
+  </iframe>
+</div>
+
+
 
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
@@ -137,12 +228,59 @@
 
   <script>
     setTimeout(() => {
-      // Changement du fond en noir
+      document.querySelector('.page2').classList.add('fade-active');
       document.body.style.backgroundColor = '#000000';
-      // Affichage progressif de la page 2
-      document.getElementById('page2').classList.add('active');
     }, 16000);
   </script>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let player;
+    let iframeContainer;
+
+    document.getElementById('play-video').addEventListener('click', () => {
+      iframeContainer = document.createElement('div');
+      iframeContainer.id = 'player';
+      iframeContainer.style.position = 'fixed';
+      iframeContainer.style.top = 0;
+      iframeContainer.style.left = 0;
+      iframeContainer.style.width = '100vw';
+      iframeContainer.style.height = '100vh';
+      iframeContainer.style.zIndex = 9999;
+      iframeContainer.style.backgroundColor = 'black';
+
+      document.body.appendChild(iframeContainer);
+
+      player = new YT.Player('player', {
+        videoId: 'FW7si6AU_FU',
+        playerVars: {
+          autoplay: 1,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1,
+          showinfo: 0
+        },
+        events: {
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    });
+
+    function onPlayerStateChange(event) {
+      if (event.data === YT.PlayerState.ENDED) {
+        if (iframeContainer) {
+          iframeContainer.remove();
+          player = null;
+        }
+      }
+    }
+  </script>
+  <script>
+  document.getElementById('play-video').addEventListener('click', () => {
+    document.getElementById('video-launcher').style.display = 'none';
+    document.getElementById('video-frame-container').style.display = 'block';
+  });
+</script>
 
 </body>
 </html>
