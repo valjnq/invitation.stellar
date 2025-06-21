@@ -3,149 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <title>Invitation Stellar</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    /* Reset global */
+    /* Reset */
     *{margin:0;padding:0;box-sizing:border-box}
 
     html,body{
       background:#ff80cc;
       font-family:'Satoshi',sans-serif;
-      font-weight:300;
-      color:#000;
       overflow-x:hidden;
+      color:#000;
     }
 
-    /* Animations de base */
-    @keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.9}100%{transform:scale(1);opacity:1}}
+    /* ---------- Animations ---------- */
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.07)}100%{transform:scale(1)}}
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes shine{0%{left:-75%}50%{left:125%}100%{left:125%}}
+    @keyframes fadeOut{from{opacity:1}to{opacity:0}}
 
-    /* ---------- Logo cercle ---------- */
+    /* ---------- 1. Logo cercle ---------- */
     .image-container{
       text-align:center;
-      padding-top:5px;
-      animation:fadeOut 1s ease-out forwards;
-      animation-delay:10.5s;
+      padding:5px 0;
+      animation:fadeOut 1s ease forwards;
+      animation-delay:10.5s;          /* disparaît à 10,5 s */
     }
-    @keyframes fadeOut{from{opacity:1}to{opacity:0}}
-    .image-container img{width:250px;max-width:80%;height:auto;animation:pulse 3s ease-in-out infinite}
+    .image-container img{
+      width:250px;max-width:80%;height:auto;
+      animation:pulse 3s ease-in-out infinite;
+    }
 
-    /* ---------- Texte intro ---------- */
+    /* ---------- 2. Texte intro ---------- */
     .text-container{
       text-align:center;
-      padding:10px 15px 0;
-      max-height:1000px;        /* hauteur initiale max */
-      overflow:hidden;
-      animation:collapseText 1s ease-out forwards;
-      animation-delay:10.5s;
-    }
-    @keyframes collapseText{
-      to{opacity:0;max-height:0;padding:0}
+      padding:10px 15px;
+      animation:fadeOut 1s ease forwards;
+      animation-delay:10.5s;          /* même timing que le logo */
     }
     .text-line{
       opacity:0;
-      margin:0;
-      line-height:1.3;
+      animation:fadeIn .8s ease forwards;
+      line-height:1.4;
       font-size:1.6rem;
-      animation:fadeIn .8s ease-out forwards;
+      margin:.2rem 0;
     }
     .line1{animation-delay:1.5s}.line2{animation-delay:3s}.line3{animation-delay:4.5s}
     .line4{animation-delay:6s}.line5{animation-delay:7.5s}.line6{animation-delay:9s}
 
-    /* ---------- Image STARS ---------- */
-    .final-title{
-      opacity:0;
-      animation:fadeIn 2s ease-out forwards;
-      animation-delay:12s;
-      text-align:center;
-      margin:0;
-    }
-    .final-title img{width:100%;height:auto;display:block}
+    /* ---------- Hauteur de l’image STARS pour décaler la suite ---------- */
+    :root{ --star-h:35vw; }           /* 35 % de la largeur écran ≈ ratio logo */
 
-    /* ---------- Vidéo ---------- */
-    .video-container{
+    /* ---------- 3. Image STARS collée en haut ---------- */
+    .final-title{
+      position:fixed;                 /* colle en haut */
+      top:0;left:0;width:100%;
+      z-index:5;
       opacity:0;
-      max-width:100%;
-      margin:0 auto;
+      animation:fadeIn 2s ease forwards;
+      animation-delay:12s;
+    }
+    .final-title img{width:100%;height:auto;display:block;}
+
+    /* ---------- 4. Vidéo ---------- */
+    .video-container{
+      margin-top:calc(var(--star-h)); /* commence juste sous l’image */
       padding:0 10px;
-      animation:fadeIn 2s ease-out forwards;
+      opacity:0;
+      animation:fadeIn 2s ease forwards;
       animation-delay:13s;
     }
     .video-container iframe{
       width:100%;
-      height:calc(100vw*0.5625); /* 16:9 */
-      max-height:80vh;
-      border:none;
+      height:calc(100vw*0.5625);      /* 16:9 responsive */
+      max-height:80vh;border:none;
     }
 
-    /* ---------- Bouton ---------- */
+    /* ---------- 5. Bouton ---------- */
     .ticket-button{
-      display:flex;
-      justify-content:center;
+      display:flex;justify-content:center;
       margin:30px auto 60px;
       opacity:0;
-      animation:fadeIn 2s ease-out forwards;
+      animation:fadeIn 2s ease forwards;
       animation-delay:14s;
     }
     .ticket-button a{
-      background:#000;
-      color:#ff80cc;
-      text-decoration:none;
-      padding:15px 40px;
-      font-size:1.5rem;
-      font-weight:500;
-      border-radius:30px;
-      box-shadow:0 0 20px #0006;
-      position:relative;
-      overflow:hidden;
+      background:#000;color:#ff80cc;text-decoration:none;
+      padding:15px 40px;border-radius:30px;font-size:1.5rem;font-weight:500;
+      box-shadow:0 0 20px #0006;position:relative;overflow:hidden;
     }
+    @keyframes shine{0%{left:-75%}100%{left:125%}}
     .ticket-button a::before{
-      content:'';
-      position:absolute;
-      top:0;left:-75%;
-      width:50%;height:100%;
+      content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
       background:linear-gradient(120deg,transparent,#ff80cc66,transparent);
-      transform:skewX(-20deg);
-      animation:shine 2.5s infinite;
+      transform:skewX(-20deg);animation:shine 2.5s infinite;
     }
 
-    /* Responsive texte grand écran */
-    @media(min-width:768px){.text-line{font-size:2.5rem}}
+    /* Texte + vidéo plus grands sur desktop */
+    @media(min-width:768px){
+      .text-line{font-size:2.5rem}
+      :root{ --star-h:25vw; }         /* image plus aplatie sur grands écrans */
+    }
   </style>
 </head>
 <body>
 
-  <!-- Logo animé -->
+  <!-- 1. Logo cercle -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
-  <!-- Texte -->
+  <!-- 2. Texte intro -->
   <div class="text-container">
-    <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
-    <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
-    <h1 class="text-line line3">Aujourd'hui, notre attention est tournée vers une réalité limitée.</h1>
+    <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
+    <h1 class="text-line line2">Rassure-toi, tu n’es pas seul.</h1>
+    <h1 class="text-line line3">Aujourd’hui, notre attention se tourne vers une réalité limitée.</h1>
     <h1 class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
-    <h1 class="text-line line6">Il suffira de jouer à...</h1>
+    <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- Image STARS collée en haut -->
+  <!-- 3. Image STARS -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <!-- Vidéo -->
+  <!-- 4. Vidéo -->
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
+    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
             title="Stellar Teaser"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
   </div>
 
-  <!-- Bouton -->
+  <!-- 5. Bouton -->
   <div class="ticket-button">
     <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
