@@ -20,14 +20,6 @@
       background-color: #ff80cc;
       transition: background-color 1s ease;
     }
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 45px rgba(255, 255, 255, 1);
-  }
-}
 
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes pulseShrink {
@@ -103,103 +95,87 @@
       }
     }
 
-.page2 {
-  background: transparent;
-  position: fixed;
-  inset: 0;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  opacity: 1;
-  pointer-events: none;
-}
+    .page2 {
+      background: transparent;
+      position: fixed;
+      inset: 0;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      opacity: 1;
+      pointer-events: none;
+    }
 
-.page2.fade-active {
-  pointer-events: auto;
-}
+    .page2.fade-active {
+      pointer-events: auto;
+    }
 
-/* image bimbim.png en haut */
-.page2 img {
-  width: 100%;
-  height: auto;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 17s;
-}
+    .page2 img,
+    .page2 iframe,
+    .page2 .ticket-button {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
 
-/* miniature vidéo prend tout l'espace restant */
+    .page2 img            { animation-delay: 17s; }
+    .page2 .ticket-button { animation-delay: 18.4s; }
+
+    .page2 img {
+      width: 100%;
+      height: auto;
+    }
+
+    .ticket-button {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .ticket-button a {
+      background: #000;
+  background-image: linear-gradient(to right, #D163AA, #8D7BB5, #3B80BB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 30px;
+      box-shadow: 0 0 20px #0006;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .ticket-button a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
+      transform: skewX(-20deg);
+      animation: shine 2.5s infinite;
+    }
+
 .video-launcher {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   opacity: 0;
+  position: relative;
+  max-width: 100%;
   cursor: pointer;
   animation: fadeIn 1s ease-out forwards;
   animation-delay: 17.7s;
 }
 
-/* miniature elle-même */
-.video-launcher img {
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* bouton lecture au centre */
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
-/* bouton billetterie en bas */
-.ticket-button {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-}
-
-.ticket-button a {
-  background: #000;
-  color: white;
-  padding: 15px 40px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  border-radius: 30px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-  animation: pulseGlow 2.5s ease-in-out infinite;
-}
-
-
-
-
-.video-launcher {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  max-width: 400px;
-  margin: 20px auto;
-  opacity: 0;
-  cursor: pointer;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 17.7s;
-}
 
 .page2.fade-active .video-launcher {
-  display: flex;
+  display: inline-block;
 }
 
 .video-launcher img {
@@ -236,25 +212,21 @@
     </div>
   </div>
 
-<div class="page2">
-  <img src="bimbim.png" alt="Titre Stellar">
+  <div class="page2">
+    <img src="bimbim.png" alt="Titre Stellar">
+<div class="video-launcher" id="video-launcher">
+  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
+<div class="play-button">
+  <svg viewBox="0 0 100 100" width="80" height="80">
+    <!-- Cercle gris semi-transparent -->
+    <circle cx="50" cy="50" r="40" fill="rgba(0, 0, 0, 0.4)" />
 
-  <div class="video-launcher" id="video-launcher">
-    <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-    <div class="play-button">
-      <svg viewBox="0 0 100 100" width="80" height="80">
-        <defs>
-          <mask id="hole-mask">
-            <rect width="100" height="100" fill="white" />
-            <path d="M42,30 L72,50 L42,70 Z" fill="black" />
-          </mask>
-        </defs>
-        <circle cx="50" cy="50" r="40" fill="#ccc" mask="url(#hole-mask)" />
-      </svg>
-    </div>
+    <!-- Triangle transparent (trou) -->
+    <path d="M40,35 L70,50 L40,65 Z" fill="transparent" />
+  </svg>
+</div>
 
-
-
+</div>
 
 <div class="video-frame-container" id="video-frame-container" style="display: none;">
   <iframe 
