@@ -103,45 +103,69 @@
       }
     }
 
-    .page2 {
-      background: transparent;
-      position: fixed;
-      inset: 0;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10px;
-      box-sizing: border-box;
-      opacity: 1;
-      pointer-events: none;
-    }
+.page2 {
+  background: transparent;
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  opacity: 1;
+  pointer-events: none;
+}
 
-    .page2.fade-active {
-      pointer-events: auto;
-    }
+.page2.fade-active {
+  pointer-events: auto;
+}
 
-    .page2 img,
-    .page2 iframe,
-    .page2 .ticket-button {
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
-    }
+/* image bimbim.png en haut */
+.page2 img {
+  width: 100%;
+  height: auto;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 17s;
+}
 
-    .page2 img            { animation-delay: 17s; }
-    .page2 .ticket-button { animation-delay: 18.4s; }
+/* miniature vidéo prend tout l'espace restant */
+.video-launcher {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+  animation: fadeIn 1s ease-out forwards;
+  animation-delay: 17.7s;
+}
 
-    .page2 img {
-      width: 100%;
-      height: auto;
-    }
+/* miniature elle-même */
+.video-launcher img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 10px;
+}
 
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-    }
+/* bouton lecture au centre */
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* bouton billetterie en bas */
+.ticket-button {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
 
 .ticket-button a {
   background: #000;
@@ -153,9 +177,10 @@
   text-decoration: none;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6); /* halo blanc */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
   animation: pulseGlow 2.5s ease-in-out infinite;
 }
+
 
 
 
@@ -211,21 +236,24 @@
     </div>
   </div>
 
-  <div class="page2">
-    <img src="bimbim.png" alt="Titre Stellar">
-<div class="video-launcher" id="video-launcher">
-  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-  <div class="play-button">
-    <svg viewBox="0 0 100 100" width="80" height="80">
-      <defs>
-        <mask id="hole-mask">
-          <rect width="100" height="100" fill="white" />
-          <path d="M42,30 L72,50 L42,70 Z" fill="black" />
-        </mask>
-      </defs>
-      <circle cx="50" cy="50" r="40" fill="#ccc" mask="url(#hole-mask)" />
-    </svg>
-  </div>
+<div class="page2">
+  <img src="bimbim.png" alt="Titre Stellar">
+
+  <div class="video-launcher" id="video-launcher">
+    <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
+    <div class="play-button">
+      <svg viewBox="0 0 100 100" width="80" height="80">
+        <defs>
+          <mask id="hole-mask">
+            <rect width="100" height="100" fill="white" />
+            <path d="M42,30 L72,50 L42,70 Z" fill="black" />
+          </mask>
+        </defs>
+        <circle cx="50" cy="50" r="40" fill="#ccc" mask="url(#hole-mask)" />
+      </svg>
+    </div>
+
+
 
 
 <div class="video-frame-container" id="video-frame-container" style="display: none;">
