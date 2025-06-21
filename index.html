@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
@@ -24,15 +24,12 @@
 
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
-    @keyframes fadeWord { from {opacity: 0;} to {opacity: 1;} }
-
     @keyframes hideText {
       0%   { opacity: 1; }
       99%  { opacity: 0; display: block; }
       100% { opacity: 0; display: none; }
     }
 
-    /* ---------- Cercle ---------- */
     .image-container {
       text-align: center;
       padding-top: 5px;
@@ -48,7 +45,6 @@
       animation: pulse 3s ease-in-out infinite;
     }
 
-    /* ---------- Texte principal ---------- */
     .text-container {
       text-align: center;
       padding: 10px 15px 0;
@@ -74,22 +70,11 @@
     .line6 { animation-delay: 9s; }
     .line7 { animation-delay: 11.5s; }
 
-    .word {
-      opacity: 0;
-      display: inline-block;
-      animation: fadeWord 0.5s ease-out forwards;
-    }
-
-    .word-1 { animation-delay: 9s; }
-    .word-2 { animation-delay: 9.5s; }
-    .word-3 { animation-delay: 10s; }
-
-    /* ---------- Bouton billetterie ---------- */
     .ticket-button {
-      display: none;
+      display: flex;
       justify-content: center;
-      margin: 30px auto 10px;
-      text-align: center;
+      margin: 20px auto;
+      opacity: 0;
       animation: fadeIn 1s ease-out forwards;
       animation-delay: 14s;
       animation-fill-mode: forwards;
@@ -101,19 +86,19 @@
       text-decoration: none;
       padding: 15px 40px;
       font-size: 1.5rem;
+      font-weight: 500;
       border-radius: 30px;
       box-shadow: 0 0 20px #00000066;
       animation: pulse 2.5s infinite;
     }
 
-    /* ---------- Vidéo intégrée ---------- */
     .video-container {
       opacity: 0;
       max-width: 800px;
-      margin: 20px auto 10px;
+      margin: 10px auto;
       padding: 0 10px;
       animation: fadeIn 1s ease-out forwards;
-      animation-delay: 15s;
+      animation-delay: 15.5s;
       animation-fill-mode: forwards;
     }
 
@@ -123,7 +108,6 @@
       border: none;
     }
 
-    /* ---------- Image finale (Titre Stellar) ---------- */
     .final-title {
       opacity: 0;
       text-align: center;
@@ -155,29 +139,25 @@
     <h1 class="text-line line3">Un univers infini s’offre à toi.</h1>
     <h1 class="text-line line4">Guide-le par ton attention.</h1>
     <h1 class="text-line line5">Elle peut tout changer.</h1>
-    <h1 class="text-line line6">
-      <span class="word word-1">Joue.</span>
-      <span class="word word-2">Crée.</span>
-      <span class="word word-3">Deviens.</span>
-    </h1>
+    <h1 class="text-line line6">Joue. Crée. Deviens.</h1>
     <h1 class="text-line line7">Entre dans...</h1>
-  </div>
-
-  <div class="ticket-button">
-    <a href="https://www.billetweb.fr/stellar" target="_blank">Billetterie</a>
-  </div>
-
-  <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&showinfo=0&modestbranding=1"
-      title="Vidéo Stellar"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
   </div>
 
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
+  </div>
+
+  <div class="ticket-button">
+    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
+  </div>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
+      title="Stellar Teaser"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
 
 </body>
