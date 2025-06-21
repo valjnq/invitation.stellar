@@ -9,11 +9,18 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #ffffff;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
       overflow-x: hidden;
+      overflow-y: hidden; /* scroll désactivé initialement */
+      animation: enableScroll 0s linear forwards;
+      animation-delay: 14.5s; /* réactive le scroll après les animations */
+    }
+
+    @keyframes enableScroll {
+      to { overflow-y: auto; }
     }
 
     @keyframes pulse {
@@ -75,42 +82,47 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
-    /* NOUVEAU BLOC FLEX */
-    .final-screen {
+    .final-title {
       opacity: 0;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
       animation-fill-mode: forwards;
-
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10px;
-      box-sizing: border-box;
+      text-align: center;
+      margin: 0;
     }
 
-    .final-screen img {
+    .final-title img {
       width: 100%;
       max-width: 100%;
       height: auto;
       display: block;
     }
 
-    .final-screen iframe {
+    .video-container {
+      opacity: 0;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 10px;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 13s;
+      animation-fill-mode: forwards;
+    }
+
+    .video-container iframe {
       width: 100%;
-      height: calc(100vw * 0.5625);
-      max-height: 40vh;
+      height: calc(100vw * 0.5625); /* format 16:9 responsive */
+      max-height: 80vh;
       border: none;
     }
 
     .ticket-button {
       display: flex;
       justify-content: center;
-      margin: 0;
-      opacity: 1;
-      animation: none;
+      margin: 30px auto 60px;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 14s;
+      animation-fill-mode: forwards;
     }
 
     .ticket-button a {
@@ -145,7 +157,7 @@
 </head>
 <body>
 
-  <!-- Logo animé -->
+  <!-- Logo cercle -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
@@ -160,20 +172,24 @@
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
-  <!-- PAGE FINALE QUI TIENT DANS L'ÉCRAN -->
-  <div class="final-screen">
+  <!-- Image STELLAR -->
+  <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
+  </div>
 
+  <!-- Vidéo -->
+  <div class="video-container">
     <iframe
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
       title="Stellar Teaser"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
+  </div>
 
-    <div class="ticket-button">
-      <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
-    </div>
+  <!-- Bouton -->
+  <div class="ticket-button">
+    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
 
 </body>
