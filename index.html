@@ -10,9 +10,18 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
+      height: 100%;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle, #ff80cc 0%, #B71A83 100%);
+      pointer-events: none;
     }
 
     /* --- Animations --- */
