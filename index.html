@@ -25,14 +25,13 @@
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
     @keyframes fadeWord { from {opacity: 0;} to {opacity: 1;} }
-
     @keyframes hideText {
       0%   { opacity: 1; }
       99%  { opacity: 0; display: block; }
       100% { opacity: 0; display: none; }
     }
 
-    /* ---------- Image cercle initial ---------- */
+    /* ---------- Image cercle ---------- */
     .image-container {
       text-align: center;
       padding-top: 5px;
@@ -58,7 +57,7 @@
       opacity: 0;
       margin: 0;
       line-height: 1.3;
-      font-size: 1.5rem; /* plus petit qu'avant */
+      font-size: 1.5rem;
       animation: fadeIn 0.8s ease-out forwards;
       animation-fill-mode: forwards;
     }
@@ -74,25 +73,29 @@
     .word {
       opacity: 0;
       display: inline-block;
-      font-size: 1.5rem; /* cohérent avec les lignes */
       animation: fadeWord 0.5s ease-out forwards;
+      /* pas de font-size ici */
     }
 
     .word-1 { animation-delay: 9s; }
     .word-2 { animation-delay: 9.5s; }
     .word-3 { animation-delay: 10s; }
 
-    /* ---------- Image finale remplaçant le cercle ---------- */
-    .final-image {
-      display: none;
+    /* ---------- Image finale (remplacement du logo) ---------- */
+    .final-title {
       opacity: 0;
       text-align: center;
       animation: fadeIn 2s ease-out forwards;
-      animation-delay: 13.2s;
+      animation-delay: 14s;
       animation-fill-mode: forwards;
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      margin: auto;
     }
 
-    .final-image img {
+    .final-title img {
       width: 100%;
       max-width: 500px;
       height: auto;
@@ -100,50 +103,55 @@
 
     /* ---------- Bouton billetterie ---------- */
     .billet-button {
-      display: none;
       opacity: 0;
-      margin: 30px auto 0;
-      text-align: center;
-      font-family: 'Satoshi', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #ff80cc;
-      background-color: #000;
-      border: none;
-      border-radius: 20px;
-      padding: 15px 40px;
-      cursor: pointer;
-      animation: fadeIn 2s ease-out forwards, pulse 3s ease-in-out infinite;
-      animation-delay: 13.5s, 15.5s;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 14s;
       animation-fill-mode: forwards;
+      text-align: center;
+      margin-top: 400px;
+    }
+
+    .billet-button a {
+      background-color: #000;
+      color: #ff80cc;
+      text-decoration: none;
+      padding: 18px 40px;
+      border-radius: 20px;
+      font-size: 1.5rem;
+      font-family: 'Satoshi', sans-serif;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+    }
+
+    .billet-button a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .text-line {
+        font-size: 2.5rem;
+        line-height: 1.2;
+      }
     }
 
     @media (max-width: 767px) {
-      .final-image {
-        position: relative;
-        top: 20px;
-        margin-bottom: 10px;
-      }
-
       .billet-button {
-        font-size: 1rem;
-        padding: 12px 30px;
+        margin-top: 300px;
       }
-    }
-
-    @media (min-width: 768px) {
-      .text-line { font-size: 2.2rem; line-height: 1.2; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cercle initial qui pulse -->
-  <div class="image-container" id="initial-circle">
+  <!-- Cercle noir (logo initial) -->
+  <div class="image-container" id="logo-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
-  <!-- Texte -->
+  <!-- Texte animé -->
   <div class="text-container">
     <h1 class="text-line line1">Voici l’aube d’un nouveau possible.</h1>
     <h1 class="text-line line2">Ton esprit en est l’architecte.</h1>
@@ -158,26 +166,15 @@
     <h1 class="text-line line7">Entre dans...</h1>
   </div>
 
-  <!-- Image finale stars -->
-  <div class="final-image" id="final-stars">
+  <!-- Image Stellar après transition -->
+  <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <!-- Bouton billetterie -->
-  <div style="text-align: center;">
-    <button class="billet-button" onclick="window.open('https://www.billetweb.fr/stellar', '_blank')">
-      BILLETTERIE
-    </button>
+  <!-- Bouton -->
+  <div class="billet-button">
+    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
-
-  <!-- Script pour changement d’éléments -->
-  <script>
-    setTimeout(() => {
-      document.getElementById('initial-circle').style.display = 'none';
-      document.getElementById('final-stars').style.display = 'block';
-      document.querySelector('.billet-button').style.display = 'inline-block';
-    }, 13000);
-  </script>
 
 </body>
 </html>
