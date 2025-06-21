@@ -173,6 +173,33 @@
       transform: skewX(-20deg);
       animation: shine 2.5s infinite;
     }
+    .video-launcher {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.video-launcher img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  color: white;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  padding: 20px;
+  pointer-events: none;
+}
+
   </style>
 </head>
 <body>
@@ -195,8 +222,10 @@
     <img src="bimbim.png" alt="Titre Stellar">
 
 <div class="video-launcher">
-  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video" style="cursor: pointer; max-width: 100%;">
+  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
+  <div class="play-button">&#9658;</div>
 </div>
+
 
 
     <div class="ticket-button">
