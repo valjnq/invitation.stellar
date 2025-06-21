@@ -33,6 +33,11 @@
       to   { opacity: 1; }
     }
 
+    @keyframes fadeWord {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     /* ---------- Cercle (image) ---------- */
     .image-container {
       text-align: center;
@@ -47,11 +52,11 @@
       animation:
         fadePulseStart 1s ease-out forwards,
         pulse 4s ease-in-out infinite;
-      animation-delay: 0s, 1s; /* fadePulse = immédiat, pulse = après */
+      animation-delay: 0s, 1s;
       animation-fill-mode: forwards;
     }
 
-    /* ---------- Texte ---------- */
+    /* ---------- Textes ---------- */
     .text-container {
       text-align: center;
       padding: 40px 20px 0;
@@ -74,6 +79,17 @@
     .line6 { animation-delay: 8.5s; }
     .line7 { animation-delay: 10s; }
 
+    /* ---------- Mots individuels pour ligne 6 ---------- */
+    .word {
+      opacity: 0;
+      display: inline-block;
+      animation: fadeWord 0.5s ease-out forwards;
+    }
+
+    .word-1 { animation-delay: 8.5s; }
+    .word-2 { animation-delay: 8.9s; }
+    .word-3 { animation-delay: 9.3s; }
+
     @media (min-width: 768px) {
       .text-line {
         font-size: 3rem;
@@ -90,10 +106,14 @@
   <div class="text-container">
     <h1 class="text-line line1">Voici l’aube d’un nouveau possible.</h1>
     <h1 class="text-line line2">Ton esprit en est l’architecte.</h1>
-    <h1 class="text-line line3">Un univers illimité s’offre à toi.</h1>
+    <h1 class="text-line line3">Un univers infini s’offre à toi.</h1>
     <h1 class="text-line line4">Guide-le par ton attention.</h1>
     <h1 class="text-line line5">Elle peut tout changer.</h1>
-    <h1 class="text-line line6">Joue. Crée. Deviens.</h1>
+    <h1 class="text-line line6">
+      <span class="word word-1">Joue.</span>
+      <span class="word word-2">Crée.</span>
+      <span class="word word-3">Deviens.</span>
+    </h1>
     <h1 class="text-line line7">Entre dans...</h1>
   </div>
 
