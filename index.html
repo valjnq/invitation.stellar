@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
@@ -23,19 +23,27 @@
     }
 
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
+    @keyframes hideBlock {
+      0%   { opacity: 1; height: auto; }
+      99%  { opacity: 0; height: auto; display: block; }
+      100% { opacity: 0; height: 0; display: none; }
+    }
+
     @keyframes shine {
       0% { left: -75%; }
       50% { left: 125%; }
       100% { left: 125%; }
     }
 
-    /* Logo cercle */
-    .image-container {
-      text-align: center;
-      animation: fadeOut 1s ease-out forwards;
+    .image-container,
+    .text-container {
+      animation: hideBlock 1s ease-out forwards;
       animation-delay: 10.5s;
       animation-fill-mode: forwards;
+    }
+
+    .image-container {
+      text-align: center;
     }
 
     .image-container img {
@@ -45,13 +53,9 @@
       animation: pulse 3s ease-in-out infinite;
     }
 
-    /* Texte */
     .text-container {
       text-align: center;
       padding: 10px 15px;
-      animation: fadeOut 1s ease-out forwards;
-      animation-delay: 10.5s;
-      animation-fill-mode: forwards;
     }
 
     .text-line {
@@ -70,14 +74,13 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
-    /* Image titre STELLAR */
     .final-title {
       opacity: 0;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
       animation-fill-mode: forwards;
       text-align: center;
-      margin-top: 0;
+      margin: 0;
     }
 
     .final-title img {
@@ -87,7 +90,6 @@
       display: block;
     }
 
-    /* Vidéo */
     .video-container {
       opacity: 0;
       max-width: 100%;
@@ -100,12 +102,11 @@
 
     .video-container iframe {
       width: 100%;
-      height: calc(100vw * 0.5625); /* 16:9 responsive */
+      height: calc(100vw * 0.5625); /* format 16:9 responsive */
       max-height: 80vh;
       border: none;
     }
 
-    /* Bouton */
     .ticket-button {
       display: flex;
       justify-content: center;
@@ -163,7 +164,7 @@
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
-  <!-- Image titre -->
+  <!-- Image STELLAR -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
@@ -178,7 +179,7 @@
     </iframe>
   </div>
 
-  <!-- Bouton billetterie -->
+  <!-- Bouton -->
   <div class="ticket-button">
     <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
