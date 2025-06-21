@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -24,8 +24,8 @@
     @keyframes hidePage { to { opacity: 0; pointer-events: none; } }
     @keyframes showPage { to { opacity: 1; pointer-events: auto; } }
     @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
+      0%   { left: -75%; }
+      50%  { left: 125%; }
       100% { left: 125%; }
     }
 
@@ -41,6 +41,8 @@
       text-align: center;
       animation: hidePage 1s ease forwards 15.5s;
       z-index: 1;
+      padding: 0 20px;
+      box-sizing: border-box;
     }
 
     .page1 img {
@@ -48,15 +50,16 @@
       max-width: 80%;
       opacity: 0;
       margin-bottom: 20px;
-      animation: fadeIn 0.5s ease-out forwards, pulseShrink 4s ease-in-out infinite;
-      animation-delay: 0.5s, 1.5s;
+      animation:
+        fadeIn 1s ease-out forwards 0.5s,
+        pulseShrink 4s ease-in-out infinite 1.5s;
     }
 
     .text-line {
       opacity: 0;
       margin: 5px 0;
-      font-size: 1.6rem;
-      line-height: 1.4;
+      line-height: 1.8;
+      font-size: 1.2rem;
       animation: fadeIn 1s ease-out forwards;
     }
 
@@ -68,7 +71,9 @@
     .line6 { animation-delay: 13.5s; }
 
     @media (min-width: 768px) {
-      .text-line { font-size: 2.5rem; }
+      .text-line {
+        font-size: 2.5rem;
+      }
     }
 
     /* PAGE 2 */
@@ -133,7 +138,7 @@
 </head>
 <body>
 
-  <!-- Page 1 : logo + texte -->
+  <!-- Page 1 -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
@@ -144,7 +149,7 @@
     <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- Page 2 : image stars + vidéo + bouton -->
+  <!-- Page 2 -->
   <div class="page2">
     <img src="stars.png" alt="Titre Stellar">
 
