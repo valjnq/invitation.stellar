@@ -11,102 +11,63 @@
       margin: 0;
       padding: 0;
       font-family: 'Satoshi', sans-serif;
-      background-color: #ff80cc;
-      transition: background-color 1s ease;
+      background-color: #ffffff;
       overflow: hidden;
+      transition: background-color 1s ease;
     }
 
-    body.to-black {
-      background-color: #000000;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes pulseShrink {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.93); }
-      100% { transform: scale(1); }
-    }
-    @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
     @keyframes pulseGlow {
-      0%,100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
+      0%, 100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
       50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
     }
 
     .page1 {
       position: fixed;
       inset: 0;
-      height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 0 10px;
-      box-sizing: border-box;
-      animation: hidePage 1s ease forwards 16s;
+      justify-content: center;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 16s;
       z-index: 1;
-      background: transparent;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        pointer-events: none;
+      }
     }
 
     .page1 img {
       width: 250px;
       max-width: 80%;
       opacity: 0;
-      animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
-      animation-delay: 0.5s, 1.5s;
-    }
-
-    .text-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-bottom: 80px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .text-line {
-      display: block;
-      opacity: 0;
-      font-size: 1.2rem;
-      line-height: 1.4;
-      font-weight: 700;
-      margin: 2px auto;
-      text-align: center;
-      width: 90%;
       animation: fadeIn 1s ease-out forwards;
-    }
-
-    .line1 { animation-delay: 3.5s; }
-    .line2 { animation-delay: 5.5s; }
-    .line3 { animation-delay: 7.5s; }
-    .line4 { animation-delay: 9.5s; }
-    .line5 { animation-delay: 11.5s; }
-    .line6 { animation-delay: 13.5s; }
-
-    @media (min-width: 768px) {
-      .text-line {
-        font-size: 2.5rem;
-        font-weight: 300;
-      }
+      animation-delay: 0.5s;
     }
 
     .page2 {
       position: fixed;
       inset: 0;
-      height: 100dvh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       padding: 20px 10px;
-      box-sizing: border-box;
-      opacity: 1;
+      opacity: 0;
       pointer-events: none;
-      background: transparent;
+      transition: opacity 1s ease;
     }
 
-    .page2.fade-active {
+    .page2.active {
+      opacity: 1;
       pointer-events: auto;
     }
 
@@ -148,28 +109,21 @@
       font-weight: 700;
       border-radius: 30px;
       text-decoration: none;
-      position: relative;
       animation: pulseGlow 2.5s ease-in-out infinite;
     }
   </style>
 </head>
 <body>
 
+  <!-- Page 1 avec logo -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
-    <div class="text-wrapper">
-      <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
-      <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
-      <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
-      <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
-      <p class="text-line line5">Il suffira de mettre un casque.</p>
-      <p class="text-line line6">Il suffira de jouer à…</p>
-    </div>
   </div>
 
-  <div class="page2">
+  <!-- Page 2 avec logo Stellar + vidéo + bouton -->
+  <div class="page2" id="page2">
     <img src="bimbim.png" alt="Titre Stellar">
-    
+
     <iframe 
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&controls=1" 
       allow="autoplay; encrypted-media"
@@ -183,8 +137,10 @@
 
   <script>
     setTimeout(() => {
-      document.querySelector('.page2').classList.add('fade-active');
-      document.body.classList.add('to-black');
+      // Changement du fond en noir
+      document.body.style.backgroundColor = '#000000';
+      // Affichage progressif de la page 2
+      document.getElementById('page2').classList.add('active');
     }, 16000);
   </script>
 
