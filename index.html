@@ -16,9 +16,9 @@
       overflow-x: hidden;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    @keyframes fadePulseStart {
+      0%   { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
     @keyframes pulse {
@@ -27,7 +27,6 @@
       100% { transform: scale(1);     opacity: 1; }
     }
 
-    /* --------- Image (cercle) --------- */
     .image-container {
       text-align: center;
       padding-top: 30px;
@@ -39,11 +38,10 @@
       height: auto;
       opacity: 0;
       animation:
-        fadeIn 1s ease-out forwards,
-        pulse 4s 1s ease-in-out infinite; /* pulse démarre après 1s */
+        fadePulseStart 1s ease-out forwards,
+        pulse 4s 1s ease-in-out infinite; /* pulse continue après */
     }
 
-    /* --------- Textes --------- */
     .text-container {
       text-align: center;
       padding: 40px 20px 0;
@@ -60,6 +58,11 @@
     .line1 { animation-delay: 1s; }
     .line2 { animation-delay: 3s; }
 
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
     @media (min-width: 768px) {
       .text-line {
         font-size: 3rem;
@@ -70,13 +73,4 @@
 <body>
 
   <div class="image-container">
-    <img src="logo.png" alt="Invitation Stellar">
-  </div>
-
-  <div class="text-container">
-    <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
-    <h1 class="text-line line2">Rassure-toi, tu n’es pas seul.</h1>
-  </div>
-
-</body>
-</html>
+    <img src="logo.png" alt="Invitation
