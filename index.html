@@ -7,182 +7,75 @@
   <link rel="stylesheet" href="css/satoshi.css">
   <link rel="icon" type="image/png" href="favicon_128x128.png">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #ff80cc;
-      font-family: 'Satoshi', sans-serif;
-      overflow: hidden;
+    html, body{
+      margin:0;padding:0;background:#ff80cc;font-family:'Satoshi',sans-serif;overflow:hidden;
     }
 
-    /* --- Animations --- */
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    /* --- Animations génériques --- */
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+    @keyframes pulseShrink{0%{transform:scale(1);}50%{transform:scale(0.93);}100%{transform:scale(1);}}
+    @keyframes hidePage{to{opacity:0;pointer-events:none;}}
+    @keyframes shine{0%{left:-75%;}50%{left:125%;}100%{left:125%;}}
 
-    @keyframes pulseShrink {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.93); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
-
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
+    /* --- Glow animé pour le logo --- */
+    @keyframes stellarPulse{
+      0%,100%{filter:drop-shadow(0 0 4px #B71A83) drop-shadow(0 0 8px #B71A83) drop-shadow(0 0 12px #fff);}
+      50%    {filter:drop-shadow(0 0 6px #B71A83) drop-shadow(0 0 16px #B71A83)drop-shadow(0 0 24px #fff);}
     }
 
     /* --- PAGE 1 --- */
-    .page1 {
-      position: fixed;
-      background: transparent;
-      inset: 0;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0px 10px 0px;
-      box-sizing: border-box;
-      animation: hidePage 1s ease forwards 16s;
-      z-index: 1;
+    .page1{
+      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;align-items:center;
+      text-align:center;padding:0 10px;box-sizing:border-box;animation:hidePage 1s ease forwards 16s;z-index:1;background:transparent;
     }
+    .page1 img{width:250px;max-width:80%;opacity:0;animation:fadeIn 1s ease-out forwards .5s, pulseShrink 4s ease-in-out infinite 1.5s;}
 
-    .page1 img {
-      width: 250px;
-      max-width: 80%;
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
-      animation-delay: 0.5s, 1.5s;
+    .text-wrapper{flex:1;display:flex;flex-direction:column;justify-content:space-between;padding-bottom:80px;width:100%;}
+    .text-line{
+      opacity:0;font-size:1.2rem;line-height:1.4;margin:2px 0;width:90%;font-weight:700;text-align:center;
+      animation:fadeIn 1s ease-out forwards;
     }
-
-    .text-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-bottom: 80px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .text-line {
-      display: block;
-      opacity: 0;
-      font-size: 1.2rem;
-      line-height: 1.4;
-      margin: 2px 0;
-      animation: fadeIn 1s ease-out forwards;
-      text-align: center;
-      width: 90%;
-      font-weight: 700;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .line1 { animation-delay: 3.5s; }
-    .line2 { animation-delay: 5.5s; }
-    .line3 { animation-delay: 7.5s; }
-    .line4 { animation-delay: 9.5s; }
-    .line5 { animation-delay: 11.5s; }
-    .line6 { animation-delay: 13.5s; }
-
-    @media (min-width: 768px) {
-      .text-line {
-        font-size: 2.5rem;
-        font-weight: 300;
-      }
-    }
+    .line1{animation-delay:3.5s}.line2{animation-delay:5.5s}.line3{animation-delay:7.5s}
+    .line4{animation-delay:9.5s}.line5{animation-delay:11.5s}.line6{animation-delay:13.5s}
+    @media(min-width:768px){.text-line{font-size:2.5rem;font-weight:300}}
 
     /* --- PAGE 2 --- */
-    .page2 {
-      background: transparent;
-      position: fixed;
-      inset: 0;
-      height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10px;
-      box-sizing: border-box;
-      opacity: 1;
-      pointer-events: none;
+    .page2{
+      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+      padding:20px 10px;box-sizing:border-box;background:transparent;pointer-events:none;
     }
+    .page2.fade-active{pointer-events:auto;}
 
-    .page2.fade-active {
-      pointer-events: auto;
-    }
-
-    .page2 img,
+    /* --- apparition différée --- */
     .page2 iframe,
-    .page2 .ticket-button {
-      opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
+    .page2 .ticket-button{
+      opacity:0;animation:fadeIn 1s ease-out forwards;
+    }
+    .page2 iframe        {animation-delay:17.7s;}
+    .page2 .ticket-button{animation-delay:18.4s;}
+
+    /* --- logo STELLAR --- */
+    .page2 img{
+      width:100%;height:auto;opacity:0;
+      /* d’abord fade-in (17 s) puis halo pulse (débute quand le fade est terminé) */
+      animation:
+        fadeIn 1s ease-out forwards 17s,
+        stellarPulse 2.5s ease-in-out infinite 18s;
     }
 
-    .page2 img            { animation-delay: 17s; }
-    .page2 iframe         { animation-delay: 17.7s; }
-    .page2 .ticket-button { animation-delay: 18.4s; }
+    /* --- iframe --- */
+    .page2 iframe{width:100%;height:calc(100vw*0.5625);max-height:40vh;border:none;}
 
-@keyframes stellarPulse {
-  0%, 100% {
-    filter:
-      drop-shadow(0 0 4px #B71A83)
-      drop-shadow(0 0 8px #B71A83)
-      drop-shadow(0 0 12px #ffffff);
-  }
-  50% {
-    filter:
-      drop-shadow(0 0 6px #B71A83)
-      drop-shadow(0 0 16px #B71A83)
-      drop-shadow(0 0 24px #ffffff);
-  }
-}
-
-.page2 img {
-  width: 100%;
-  height: auto;
-  animation: stellarPulse 2.5s ease-in-out infinite;
-}
-
-
-    .page2 iframe {
-      width: 100%;
-      height: calc(100vw * 0.5625);
-      max-height: 40vh;
-      border: none;
+    /* --- bouton Billetterie --- */
+    .ticket-button{display:flex;justify-content:center;margin:0;}
+    .ticket-button a{
+      background:#000;color:#ff80cc;padding:15px 40px;font-size:1.5rem;font-weight:700;border-radius:30px;
+      box-shadow:0 0 20px #0006;position:relative;overflow:hidden;text-decoration:none;
     }
-
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 0;
-    }
-
-    .ticket-button a {
-      background: #000;
-      color: #ff80cc;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 700;
-      border-radius: 30px;
-      box-shadow: 0 0 20px #0006;
-      position: relative;
-      overflow: hidden;
-      text-decoration: none;
-    }
-
-    .ticket-button a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
+    .ticket-button a::before{
+      content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
+      background:linear-gradient(120deg,transparent,#ff80cc66,transparent);transform:skewX(-20deg);
+      animation:shine 2.5s infinite;
     }
   </style>
 </head>
@@ -215,11 +108,11 @@
     </div>
   </div>
 
-  <!-- Activation différée de la page2 -->
+  <!-- activation différée de la page 2 -->
   <script>
     setTimeout(() => {
       document.querySelector('.page2').classList.add('fade-active');
-    }, 15000); // à 15 secondes
+    }, 15000); // à 15 s
   </script>
 
 </body>
