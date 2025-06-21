@@ -194,10 +194,10 @@
   <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
 
-    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
-            title="Stellar Teaser"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
+<div class="video-launcher">
+  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video" style="cursor: pointer; max-width: 100%;">
+</div>
+
 
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
@@ -210,6 +210,52 @@
     document.querySelector('.page2').classList.add('fade-active');
     document.body.style.backgroundColor = '#000000';
   }, 16000); // active page2 et change fond en noir à 15s
+</script>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  let player;
+  let iframeContainer;
+
+  document.getElementById('play-video').addEventListener('click', () => {
+    // Crée le conteneur de l'iframe
+    iframeContainer = document.createElement('div');
+    iframeContainer.id = 'player';
+    iframeContainer.style.position = 'fixed';
+    iframeContainer.style.top = 0;
+    iframeContainer.style.left = 0;
+    iframeContainer.style.width = '100vw';
+    iframeContainer.style.height = '100vh';
+    iframeContainer.style.zIndex = 9999;
+    iframeContainer.style.backgroundColor = 'black';
+
+    document.body.appendChild(iframeContainer);
+
+    // Crée le lecteur YouTube via l'API
+    player = new YT.Player('player', {
+      videoId: 'FW7si6AU_FU', // ID de ta vidéo
+      playerVars: {
+        autoplay: 1,
+        controls: 1,
+        rel: 0,
+        modestbranding: 1,
+        showinfo: 0
+      },
+      events: {
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  });
+
+  function onPlayerStateChange(event) {
+    // Code 0 = vidéo terminée
+    if (event.data === YT.PlayerState.ENDED) {
+      if (iframeContainer) {
+        iframeContainer.remove();
+        player = null;
+      }
+    }
+  }
 </script>
 
 
