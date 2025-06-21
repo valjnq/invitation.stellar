@@ -10,7 +10,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #000000;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -199,11 +199,13 @@
   </div>
 
   <!-- Activation différée de la page2 -->
-  <script>
-    setTimeout(() => {
-      document.querySelector('.page2').classList.add('fade-active');
-    }, 15000); // à 15 secondes
-  </script>
+<script>
+  setTimeout(() => {
+    document.querySelector('.page2').classList.add('fade-active');
+    document.body.style.backgroundColor = '#000000';
+  }, 15000); // active page2 et change fond en noir à 15s
+</script>
+
 
 </body>
 </html>
