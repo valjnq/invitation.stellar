@@ -125,14 +125,27 @@
     .page2 iframe         { animation-delay: 17.7s; }
     .page2 .ticket-button { animation-delay: 18.4s; }
 
+@keyframes stellarPulse {
+  0%, 100% {
+    filter:
+      drop-shadow(0 0 4px #B71A83)
+      drop-shadow(0 0 8px #B71A83)
+      drop-shadow(0 0 12px #ffffff);
+  }
+  50% {
+    filter:
+      drop-shadow(0 0 6px #B71A83)
+      drop-shadow(0 0 16px #B71A83)
+      drop-shadow(0 0 24px #ffffff);
+  }
+}
+
 .page2 img {
   width: 100%;
   height: auto;
-  filter:
-    drop-shadow(0 0 4px #B71A83)       /* glow violet sombre */
-    drop-shadow(0 0 8px #B71A83)
-    drop-shadow(0 0 12px #ffffff);     /* halo blanc doux */
+  animation: stellarPulse 2.5s ease-in-out infinite;
 }
+
 
     .page2 iframe {
       width: 100%;
