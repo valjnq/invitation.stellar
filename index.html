@@ -21,34 +21,42 @@
 
     /* ---- PAGE 1 ---- */
     .page1{
-      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;
-      justify-content:center;align-items:center;text-align:center;
-      animation:hidePage 1s ease forwards 11s; /* disparaît à 11 s */
-      z-index:1;
+      position:fixed;inset:0;height:100dvh;
+      display:flex;flex-direction:column;justify-content:center;align-items:center;
+      text-align:center;z-index:1;
+      animation:hidePage 1s ease forwards 13s; /* disparition à 13 s */
     }
     .page1 img{
       width:250px;max-width:80%;opacity:0;margin-bottom:20px;
-      animation:fadeIn .5s ease-out forwards, pulseShrink 3s ease-in-out infinite;
-      animation-delay: .5s, .5s; /* pulsation démarre juste après le fondu */
+      animation:fadeIn .5s ease-out forwards, pulseShrink 2s ease-in-out infinite;
+      animation-delay:.5s,.5s;   /* pulsation démarre en même temps que le fondu */
     }
     .text-line{
       opacity:0;margin:5px 0;line-height:1.8;font-size:1.2rem;
       animation:fadeIn 1s ease-out forwards
     }
-    .line1{animation-delay:1.5s}.line2{animation-delay:3s}.line3{animation-delay:4.5s}
-    .line4{animation-delay:6s}.line5{animation-delay:7.5s}.line6{animation-delay:9s}
+    .line1{animation-delay:1s}
+    .line2{animation-delay:3s}
+    .line3{animation-delay:5s}
+    .line4{animation-delay:7s}
+    .line5{animation-delay:9s}
+    .line6{animation-delay:11s}
     @media(min-width:768px){.text-line{font-size:2.5rem}}
 
     /* ---- PAGE 2 ---- */
     .page2{
-      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;
-      justify-content:space-between;align-items:center;padding:20px 10px;box-sizing:border-box;
-      opacity:0;pointer-events:none;animation:showPage 1s ease forwards 12s
+      position:fixed;inset:0;height:100dvh;
+      display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+      padding:20px 10px;box-sizing:border-box;
+      opacity:0;pointer-events:none;
+      animation:showPage 1s ease forwards 14s /* apparaît à 14 s */
     }
     .page2 img{width:100%;height:auto}
     .page2 iframe{
       width:100%;height:calc(100vw*.5625);max-height:40vh;border:none
     }
+
+    /* ---- Bouton ---- */
     .ticket-button{display:flex;justify-content:center;margin:0}
     .ticket-button a{
       background:#000;color:#ff80cc;padding:15px 40px;font-size:1.5rem;font-weight:500;
@@ -63,7 +71,7 @@
 </head>
 <body>
 
-  <!-- Page 1 : logo + texte -->
+  <!-- PAGE 1 : logo + texte rythmés -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
@@ -74,7 +82,7 @@
     <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- Page 2 : stars + vidéo + bouton -->
+  <!-- PAGE 2 : stars + vidéo + bouton -->
   <div class="page2">
     <img src="stars.png" alt="Titre Stellar">
 
