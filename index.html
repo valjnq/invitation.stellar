@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #ffffff;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -53,20 +53,22 @@
     }
 
 
-  .text-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    padding-bottom: 20px;
-  }
+.text-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
 
 
 .text-line {
   display: block;
   opacity: 0;
   font-size: 1.2rem;
-  line-height: 1.2;
+  line-height: 1.4;
   margin: 6px 0;
   animation: fadeIn 1s ease-out forwards;
   text-align: center;
