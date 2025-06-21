@@ -9,19 +9,33 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
 
     /* --- Animations --- */
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @keyframes pulseShrink {
       0% { transform: scale(1); }
       50% { transform: scale(0.93); }
       100% { transform: scale(1); }
     }
+
     @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
+
     @keyframes shine {
       0% { left: -75%; }
       50% { left: 125%; }
@@ -101,7 +115,7 @@
       padding: 20px 10px;
       box-sizing: border-box;
       opacity: 1;
-      pointer-events: none; /* bloqué au départ */
+      pointer-events: none;
     }
 
     .page2.fade-active {
@@ -112,12 +126,12 @@
     .page2 iframe,
     .page2 .ticket-button {
       opacity: 0;
-      animation: fadeIn 1s ease-out forwards;
+      animation: fadeInUp 0.8s ease-out forwards;
     }
 
     .page2 img            { animation-delay: 18s; }
-    .page2 iframe         { animation-delay: 18.5s; }
-    .page2 .ticket-button { animation-delay: 19s; }
+    .page2 iframe         { animation-delay: 18.7s; }
+    .page2 .ticket-button { animation-delay: 19.4s; }
 
     .page2 img {
       width: 100%;
