@@ -28,15 +28,13 @@
       100% { transform: scale(1); }
     }
     @keyframes hidePage { to {opacity: 0; pointer-events: none; } }
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
+    @keyframes pulseGlow {
+      0%,100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
+      50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
     }
 
     .page1 {
       position: fixed;
-      background: transparent;
       inset: 0;
       height: 100dvh;
       display: flex;
@@ -47,6 +45,7 @@
       box-sizing: border-box;
       animation: hidePage 1s ease forwards 16s;
       z-index: 1;
+      background: transparent;
     }
 
     .page1 img {
@@ -72,13 +71,11 @@
       opacity: 0;
       font-size: 1.2rem;
       line-height: 1.4;
-      margin: 2px 0;
-      animation: fadeIn 1s ease-out forwards;
+      font-weight: 700;
+      margin: 2px auto;
       text-align: center;
       width: 90%;
-      font-weight: 700;
-      margin-left: auto;
-      margin-right: auto;
+      animation: fadeIn 1s ease-out forwards;
     }
 
     .line1 { animation-delay: 3.5s; }
@@ -96,7 +93,6 @@
     }
 
     .page2 {
-      background: transparent;
       position: fixed;
       inset: 0;
       height: 100dvh;
@@ -108,6 +104,7 @@
       box-sizing: border-box;
       opacity: 1;
       pointer-events: none;
+      background: transparent;
     }
 
     .page2.fade-active {
@@ -115,81 +112,48 @@
     }
 
     .page2 img,
-    .page2 iframe,
-    .page2 .ticket-button {
+    .ticket-button {
       opacity: 0;
       animation: fadeIn 1s ease-out forwards;
     }
 
-    .page2 img            { animation-delay: 17s; }
-    .page2 .ticket-button { animation-delay: 18.4s; }
+    .page2 img          { animation-delay: 17s; }
+    .ticket-button      { animation-delay: 18.4s; }
 
     .page2 img {
       width: 100%;
       height: auto;
     }
 
-   /* --- BOUTON BILLETTERIE ----------------------------------- */
-.ticket-button {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-}
+    #youtube-container {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-@keyframes pulseGlow {
-  0%,100% { box-shadow: 0 0 18px rgba(255,255,255,0.50); }
-  50%     { box-shadow: 0 0 32px rgba(255,255,255,0.90); }
-}
+    .ticket-button {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
 
-.ticket-button a {
-  background: #000;          /* fond noir plein */
-  color: #fff;               /* texte blanc */
-  padding: 15px 40px;
-  font-size: 1.5rem;
-  font-weight: 700;
-  border-radius: 30px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-
-  /* HALO pulsant blanc */
-  animation: pulseGlow 2.5s ease-in-out infinite;
-}
-
-/* supprime l’ancien effet “shine” éventuel */
-.ticket-button a::before { display:none !important; }
-
-
-.video-launcher {
-  opacity: 0;
-  position: relative;
-  max-width: 100%;
-  cursor: pointer;
-  animation: fadeIn 1s ease-out forwards;
-  animation-delay: 17.7s;
-}
-
-
-.page2.fade-active .video-launcher {
-  display: inline-block;
-}
-
-.video-launcher img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-
-
-
-
-
-
+    .ticket-button a {
+      background: #000;
+      color: #fff;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      border-radius: 30px;
+      text-decoration: none;
+      position: relative;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
+
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <div class="text-wrapper">
@@ -204,22 +168,7 @@
 
   <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
-<div class="video-launcher" id="video-launcher">
-  <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-
-</div>
-
-<div class="video-frame-container" id="video-frame-container" style="display: none;">
-  <iframe 
-    src="https://www.youtube.com/embed/FW7si6AU_FU?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
-    frameborder="0" 
-    allowfullscreen 
-    allow="autoplay; encrypted-media" 
-    style="width: 100%; height: calc(100vw * 0.5625); max-height: 50vh; border-radius: 12px;">
-  </iframe>
-</div>
-
-
+    <div id="youtube-container"></div>
 
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
@@ -230,57 +179,20 @@
     setTimeout(() => {
       document.querySelector('.page2').classList.add('fade-active');
       document.body.style.backgroundColor = '#000000';
+
+      // On attend la fin de la transition pour insérer le lecteur
+      setTimeout(() => {
+        document.getElementById('youtube-container').innerHTML = `
+          <iframe 
+            src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&controls=1" 
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            style="width: 100%; height: 100%; border: none; opacity: 0; animation: fadeIn 1s ease-out forwards;">
+          </iframe>
+        `;
+      }, 1100); // > à 1s pour attendre la transition CSS
     }, 16000);
   </script>
-
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    let player;
-    let iframeContainer;
-
-    document.getElementById('play-video').addEventListener('click', () => {
-      iframeContainer = document.createElement('div');
-      iframeContainer.id = 'player';
-      iframeContainer.style.position = 'fixed';
-      iframeContainer.style.top = 0;
-      iframeContainer.style.left = 0;
-      iframeContainer.style.width = '100vw';
-      iframeContainer.style.height = '100vh';
-      iframeContainer.style.zIndex = 9999;
-      iframeContainer.style.backgroundColor = 'black';
-
-      document.body.appendChild(iframeContainer);
-
-      player = new YT.Player('player', {
-        videoId: 'FW7si6AU_FU',
-        playerVars: {
-          autoplay: 1,
-          controls: 1,
-          rel: 0,
-          modestbranding: 1,
-          showinfo: 0
-        },
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    });
-
-    function onPlayerStateChange(event) {
-      if (event.data === YT.PlayerState.ENDED) {
-        if (iframeContainer) {
-          iframeContainer.remove();
-          player = null;
-        }
-      }
-    }
-  </script>
-  <script>
-  document.getElementById('play-video').addEventListener('click', () => {
-    document.getElementById('video-launcher').style.display = 'none';
-    document.getElementById('video-frame-container').style.display = 'block';
-  });
-</script>
 
 </body>
 </html>
