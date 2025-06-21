@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #04fbff;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -30,19 +30,21 @@
     }
 
     /* --- PAGE 1 --- */
-    .page1 {
-      position: fixed;
-      inset: 0;
-      height: 100dvh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 15px 30px;
-      box-sizing: border-box;
-      text-align: center;
-      animation: hidePage 1s ease forwards 16.5s;
-      z-index: 1;
-    }
+.page1 {
+  position: fixed;
+  inset: 0;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 10px 0px;
+  box-sizing: border-box;
+  text-align: center;
+  animation: hidePage 1s ease forwards 16.5s;
+  z-index: 1;
+}
+
 
     .center-content {
       display: flex;
