@@ -75,13 +75,49 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 20px auto;
+    .final-title {
       opacity: 0;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
+      animation-fill-mode: forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .final-title img {
+      max-width: 90%;
+      height: auto;
+    }
+
+    .video-container {
+      opacity: 0;
+      max-width: 800px;
+      margin: 220px auto 20px;
+      padding: 0 10px;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 13s;
+      animation-fill-mode: forwards;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 315px;
+      border: none;
+    }
+
+    .ticket-button {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto 40px;
+      opacity: 0;
+      animation: fadeIn 2s ease-out forwards;
+      animation-delay: 14s;
       animation-fill-mode: forwards;
     }
 
@@ -110,42 +146,6 @@
       animation: shine 2.5s infinite;
     }
 
-    .video-container {
-      opacity: 0;
-      max-width: 800px;
-      margin: 10px auto;
-      padding: 0 10px;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12s;
-      animation-fill-mode: forwards;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 315px;
-      border: none;
-    }
-
-    .final-title {
-      opacity: 0;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12s;
-      animation-fill-mode: forwards;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1; /* mis au premier plan pour être visible */
-    }
-
-    .final-title img {
-      max-width: 90%;
-      height: auto;
-    }
-
     @media (min-width: 768px) {
       .text-line { font-size: 2.5rem; }
     }
@@ -153,27 +153,27 @@
 </head>
 <body>
 
+  <!-- Logo cercle animé -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
+  <!-- Texte d’intro -->
   <div class="text-container">
     <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
-    <h1 class="text-line line2">Rassure-toi, tu n'est pas seul.</h1>
+    <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
     <h1 class="text-line line3">Aujourd'hui, notre attention est tournée vers une réalité limitée.</h1>
     <h1 class="text-line line4">Mais demain, elle se portera vers un infini champs des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
+  <!-- Image STARS -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <div class="ticket-button">
-    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
-  </div>
-
+  <!-- Vidéo teaser -->
   <div class="video-container">
     <iframe
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
@@ -181,6 +181,11 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
+  </div>
+
+  <!-- Bouton Billetterie -->
+  <div class="ticket-button">
+    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
 
 </body>
