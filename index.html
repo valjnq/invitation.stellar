@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    /* ---------- Couleurs & police de base ---------- */
     html, body {
       margin: 0;
       padding: 0;
@@ -17,44 +16,54 @@
       overflow-x: hidden;
     }
 
-    /* ---------- Animations génériques ---------- */
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
 
     @keyframes pulse {
       0%   { transform: scale(1);     opacity: 1; }
-      50%  { transform: scale(1.07);  opacity: .9; }
+      50%  { transform: scale(1.07);  opacity: 0.9; }
       100% { transform: scale(1);     opacity: 1; }
     }
 
-    /* ---------- Image (cercle) ---------- */
-    .image-container { text-align: center; padding-top: 30px; }
+    /* --------- Image (cercle) --------- */
+    .image-container {
+      text-align: center;
+      padding-top: 30px;
+    }
 
     .image-container img {
       width: 250px;
       max-width: 80%;
       height: auto;
-      /* 1) fondu 1 s — 2) pulse qui démarre après 1 s */
-      animation: fadeIn 1s ease-out forwards,
-                 pulse   4s 1s ease-in-out infinite;
+      opacity: 0;
+      animation: 
+        fadeIn 1s ease-out forwards,
+        pulse 4s ease-in-out infinite;
     }
 
-    /* ---------- Textes ---------- */
-    .text-container { text-align: center; padding: 40px 20px 0; }
+    /* --------- Textes --------- */
+    .text-container {
+      text-align: center;
+      padding: 40px 20px 0;
+    }
 
     .text-line {
       opacity: 0;
       margin: 0;
       line-height: 1.4;
       font-size: 2rem;
-      animation: fadeIn 3s ease-in-out forwards;
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
-    /* Délais pour la chronologie */
-    .line1 { animation-delay: 1s; }  /* après le fade du cercle */
-    .line2 { animation-delay: 4s; }  /* 3 s après line1 */
+    .line1 { animation-delay: 1s; }
+    .line2 { animation-delay: 3s; }
 
     @media (min-width: 768px) {
-      .text-line { font-size: 3rem; }
+      .text-line {
+        font-size: 3rem;
+      }
     }
   </style>
 </head>
