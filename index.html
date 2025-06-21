@@ -16,6 +16,10 @@
       overflow: hidden;
     }
 
+    body.to-black {
+      background-color: #000000;
+    }
+
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
     @keyframes pulseShrink {
       0% { transform: scale(1); }
@@ -113,9 +117,9 @@
       animation: fadeIn 1s ease-out forwards;
     }
 
-    .page2 img          { animation-delay: 17s; }
-    .page2 iframe       { animation-delay: 17.4s; }
-    .ticket-button      { animation-delay: 18.4s; }
+    .page2 img     { animation-delay: 17s; }
+    .page2 iframe  { animation-delay: 17.4s; }
+    .ticket-button { animation-delay: 18.4s; }
 
     .page2 img {
       width: 100%;
@@ -166,7 +170,6 @@
   <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
     
-    <!-- LECTEUR YOUTUBE EN DIRECT -->
     <iframe 
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&controls=1" 
       allow="autoplay; encrypted-media"
@@ -181,7 +184,7 @@
   <script>
     setTimeout(() => {
       document.querySelector('.page2').classList.add('fade-active');
-      document.body.style.backgroundColor = '#000000';
+      document.body.classList.add('to-black');
     }, 16000);
   </script>
 
