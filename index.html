@@ -38,9 +38,9 @@
       max-width: 80%;
       height: auto;
       opacity: 0;
-      animation: 
-        fadeIn 2s ease-out forwards,
-        pulse 4s ease-in-out infinite;
+      animation:
+        fadeIn 1s ease-out forwards,
+        pulse 4s 1s ease-in-out infinite; /* pulse démarre après 1s */
     }
 
     /* --------- Textes --------- */
@@ -54,11 +54,11 @@
       margin: 0;
       line-height: 1.4;
       font-size: 2rem;
-      animation: fadeIn 1s ease-out forwards;
+      animation: fadeIn 0.8s ease-out forwards;
     }
 
-    .line1 { animation-delay: 2s; }
-    .line2 { animation-delay: 5s; }
+    .line1 { animation-delay: 1s; }
+    .line2 { animation-delay: 3s; }
 
     @media (min-width: 768px) {
       .text-line {
