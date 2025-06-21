@@ -74,6 +74,9 @@
       background:#000;color:#fff;padding:15px 40px;font-size:1.5rem;font-weight:700;
       border-radius:30px;text-decoration:none;animation:pulseGlow 2.5s ease-in-out infinite;
     }
+    .ticket-button a.pulse {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
   </style>
 </head>
 <body>
@@ -118,7 +121,9 @@ window.onload = () => {
         id="yt-thumb" 
         style="cursor: pointer; width: 100%; height: auto; border-radius: 12px; opacity: 0; animation: fadeIn 1s ease-out forwards;">
     `;
-
+setTimeout(() => {
+  document.querySelector('.ticket-button a').classList.add('pulse');
+}, 19100);
     // 3. Remplacement de l'image par l'iframe au clic
     document.getElementById('yt-thumb').addEventListener('click', () => {
       cont.innerHTML = `
