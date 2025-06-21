@@ -9,12 +9,11 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
-      overflow: hidden; /* Empêche tout scroll réel */
+      overflow: hidden;
     }
 
-    /* ---- Animations ---- */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes pulseShrink {
       0%   { transform: scale(1); }
@@ -24,12 +23,11 @@
     @keyframes hidePage { to { opacity: 0; pointer-events: none; } }
     @keyframes showPage { to { opacity: 1; pointer-events: auto; } }
     @keyframes shine {
-      0%   { left: -75%; }
-      50%  { left: 125%; }
+      0% { left: -75%; }
+      50% { left: 125%; }
       100% { left: 125%; }
     }
 
-    /* ---- PAGE 1 ---- */
     .page1 {
       position: fixed;
       inset: 0;
@@ -39,11 +37,11 @@
       justify-content: flex-start;
       align-items: center;
       text-align: center;
+      animation: hidePage 1s ease forwards 11s;
+      z-index: 1;
       padding-top: 4vh;
       padding-bottom: 4vh;
-      animation: hidePage 1s ease forwards;
-      animation-delay: 11s;
-      z-index: 1;
+      box-sizing: border-box;
     }
 
     .page1 img {
@@ -51,15 +49,15 @@
       max-width: 80%;
       opacity: 0;
       margin-bottom: 4vh;
-      animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
-      animation-delay: 0.5s, 1.5s; /* fondu puis pulsation */
+      animation: fadeIn 0.5s ease-out forwards, pulseShrink 4s ease-in-out infinite;
+      animation-delay: 0.5s, 1.5s;
     }
 
     .text-line {
       opacity: 0;
       margin: 5px 0;
-      line-height: 1.8;
       font-size: 1.2rem;
+      line-height: 1.6;
       animation: fadeIn 1s ease-out forwards;
     }
 
@@ -74,7 +72,6 @@
       .text-line { font-size: 2.5rem; }
     }
 
-    /* ---- PAGE 2 ---- */
     .page2 {
       position: fixed;
       inset: 0;
@@ -83,12 +80,11 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 10px;
-      box-sizing: border-box;
       opacity: 0;
       pointer-events: none;
-      animation: showPage 1s ease forwards;
-      animation-delay: 14.5s;
+      animation: showPage 1s ease forwards 14.5s;
+      padding: 20px 10px;
+      box-sizing: border-box;
     }
 
     .page2 img {
@@ -137,7 +133,6 @@
 </head>
 <body>
 
-  <!-- Page 1 : logo + texte -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
@@ -148,15 +143,15 @@
     <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- Page 2 : stars + vidéo + bouton -->
   <div class="page2">
     <img src="stars.png" alt="Titre Stellar">
+
     <iframe
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
       title="Stellar Teaser"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+      allowfullscreen></iframe>
+
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
     </div>
