@@ -6,174 +6,103 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #ff80cc;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 300;
-      color: #000;
-      overflow-x: hidden;
+    /* ---- Base ---- */
+    html,body{
+      margin:0;padding:0;
+      background:#ffffff;
+      font-family:'Satoshi',sans-serif;
+      overflow-x:hidden;           /* jamais de scroll horizontal */
     }
 
-    @keyframes pulse {
-      0%   { transform: scale(1); opacity: 1; }
-      50%  { transform: scale(1.07); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
+    /* ---- Animations réutilisées ---- */
+    @keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.9}100%{transform:scale(1);opacity:1}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes hideBlock{0%{opacity:1;height:auto}99%{opacity:0;height:auto;display:block}100%{opacity:0;height:0;display:none}}
+    @keyframes shine{0%{left:-75%}50%{left:125%}100%{left:125%}}
+    /* nouvelle anim pour pointer-events */
+    @keyframes showScreen{to{opacity:1;pointer-events:auto}}
+
+    /* ---- Page 1 : logo & texte ---- */
+    .image-container,.text-container{
+      animation:hideBlock 1s ease forwards 10.5s;
+    }
+    .image-container{text-align:center}
+    .image-container img{width:250px;max-width:80%;animation:pulse 3s ease-in-out infinite}
+
+    .text-container{text-align:center;padding:10px 15px}
+    .text-line{
+      opacity:0;margin:0;line-height:1.3;font-size:1.6rem;
+      animation:fadeIn .8s ease forwards;
+    }
+    .line1{animation-delay:1.5s}.line2{animation-delay:3s}.line3{animation-delay:4.5s}
+    .line4{animation-delay:6s}.line5{animation-delay:7.5s}.line6{animation-delay:9s}
+
+    /* ---- Page 2 : occupe tout l’écran, mais hors flux tant qu’invisible ---- */
+    .final-screen{
+      position:fixed;              /* hors du flux, ne crée pas de scroll */
+      inset:0;                     /* occupe tout l’écran */
+      height:100dvh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:center;
+      padding:20px 10px;
+      box-sizing:border-box;
+
+      opacity:0;
+      pointer-events:none;         /* clique bloqué avant apparition */
+      animation:showScreen 2s ease forwards 12s; /* apparaît à 12 s */
+    }
+    .final-screen img{width:100%;height:auto}
+    .final-screen iframe{
+      width:100%;
+      height:calc(100vw*.5625);
+      max-height:45vh;
+      border:none;
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    @keyframes hideBlock {
-      0%   { opacity: 1; height: auto; }
-      99%  { opacity: 0; height: auto; display: block; }
-      100% { opacity: 0; height: 0; display: none; }
+    /* ---- Bouton ---- */
+    .ticket-button{
+      display:flex;justify-content:center;margin:0;
+    }
+    .ticket-button a{
+      background:#000;color:#ff80cc;padding:15px 40px;font-size:1.5rem;font-weight:500;
+      border-radius:30px;position:relative;overflow:hidden;box-shadow:0 0 20px #0006;
+    }
+    .ticket-button a::before{
+      content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
+      background:linear-gradient(120deg,transparent,#ff80cc66,transparent);
+      transform:skewX(-20deg);animation:shine 2.5s infinite;
     }
 
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
-    }
-
-    @keyframes showScreen {
-      to {
-        opacity: 1;
-        pointer-events: auto;
-      }
-    }
-
-    .image-container,
-    .text-container {
-      animation: hideBlock 1s ease-out forwards;
-      animation-delay: 10.5s;
-      animation-fill-mode: forwards;
-    }
-
-    .image-container {
-      text-align: center;
-    }
-
-    .image-container img {
-      width: 250px;
-      max-width: 80%;
-      height: auto;
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    .text-container {
-      text-align: center;
-      padding: 10px 15px;
-    }
-
-    .text-line {
-      opacity: 0;
-      margin: 0;
-      line-height: 1.3;
-      font-size: 1.6rem;
-      animation: fadeIn 0.8s ease-out forwards;
-      animation-fill-mode: forwards;
-    }
-
-    .line1 { animation-delay: 1.5s; }
-    .line2 { animation-delay: 3s; }
-    .line3 { animation-delay: 4.5s; }
-    .line4 { animation-delay: 6s; }
-    .line5 { animation-delay: 7.5s; }
-    .line6 { animation-delay: 9s; }
-
-    .final-screen {
-      opacity: 0;
-      pointer-events: none;
-      animation: showScreen 2s ease forwards 12s;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 10px;
-      box-sizing: border-box;
-    }
-
-    .final-screen img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .final-screen iframe {
-      width: 100%;
-      height: calc(100vw * 0.5625); /* 16:9 */
-      max-height: 45vh;
-      border: none;
-    }
-
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0 40px;
-      opacity: 1;
-      animation: none;
-    }
-
-    .ticket-button a {
-      background-color: #000;
-      color: #ff80cc;
-      text-decoration: none;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 500;
-      border-radius: 30px;
-      box-shadow: 0 0 20px #00000066;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ticket-button a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
-    }
-
-    @media (min-width: 768px) {
-      .text-line { font-size: 2.5rem; }
-    }
+    /* texte plus grand desktop */
+    @media(min-width:768px){.text-line{font-size:2.5rem}}
   </style>
 </head>
 <body>
 
-  <!-- Logo animé -->
+  <!-- Page 1 -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
-  <!-- Texte -->
   <div class="text-container">
-    <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
-    <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
-    <h1 class="text-line line3">Aujourd'hui, notre attention est tournée vers une réalité limitée.</h1>
+    <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
+    <h1 class="text-line line2">Rassure-toi, tu n’es pas seul.</h1>
+    <h1 class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</h1>
     <h1 class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
-    <h1 class="text-line line6">Il suffira de jouer à...</h1>
+    <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- Image + vidéo + bouton -->
+  <!-- Page 2 (hors flux tant qu’invisible) -->
   <div class="final-screen">
     <img src="stars.png" alt="Titre Stellar">
 
-    <iframe
-      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
-      title="Stellar Teaser"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
+            title="Stellar Teaser"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
