@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
@@ -22,28 +22,16 @@
       100% { transform: scale(1);     opacity: 1; }
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+
     @keyframes hideText {
       0%   { opacity: 1; }
       99%  { opacity: 0; display: block; }
-      100% { opacity: 0; display: none; }
+      100% { opacity: 0; display: none; height: 0; margin: 0; padding: 0; }
     }
 
-    @keyframes energeticGlow {
-      0%, 100% {
-        box-shadow: 0 0 10px #ff80cc, 0 0 20px #ff80cc inset;
-      }
-      50% {
-        box-shadow: 0 0 25px #ff80cc, 0 0 40px #ff80cc inset;
-      }
-    }
-
-    @keyframes shine {
-      0% { left: -75%; }
-      100% { left: 125%; }
-    }
-
+    /* --- LOGO --- */
     .image-container {
       text-align: center;
       padding-top: 5px;
@@ -59,6 +47,7 @@
       animation: pulse 3s ease-in-out infinite;
     }
 
+    /* --- TEXTE --- */
     .text-container {
       text-align: center;
       padding: 10px 15px 0;
@@ -70,9 +59,9 @@
     .text-line {
       opacity: 0;
       margin: 0;
-      line-height: 1.3;
-      font-size: 1.6rem;
-      animation: fadeIn 0.8s ease-out forwards;
+      line-height: 1.5;
+      font-size: 1.2rem;
+      animation: fadeIn 1s ease-out forwards;
       animation-fill-mode: forwards;
     }
 
@@ -83,45 +72,45 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
+    /* --- IMAGE STARS AVEC EFFET AURA --- */
     .final-title {
-      position: relative;
-      display: inline-block;
       opacity: 0;
-      text-align: center;
-      margin: 0 auto;
-      margin-top: -10px;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
       animation-fill-mode: forwards;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
     }
 
     .final-title img {
-      max-width: 90%;
+      max-width: 100%;
       height: auto;
-      position: relative;
-      z-index: 1;
+      animation: glowAura 4s ease-in-out infinite;
     }
 
-    .final-title::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
-      transform: skewX(-25deg);
-      animation: shine 3s ease-in-out infinite;
+    @keyframes glowAura {
+      0% { filter: drop-shadow(0 0 0px #fff); }
+      50% { filter: drop-shadow(0 0 25px #fff); }
+      100% { filter: drop-shadow(0 0 0px #fff); }
     }
 
+    /* --- VIDEO --- */
     .video-container {
       opacity: 0;
       max-width: 800px;
-      margin: 20px auto 0;
+      margin: 220px auto 20px;
       padding: 0 10px;
       animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12s;
+      animation-delay: 13s;
       animation-fill-mode: forwards;
+      z-index: 1;
+      position: relative;
     }
 
     .video-container iframe {
@@ -130,14 +119,17 @@
       border: none;
     }
 
+    /* --- BOUTON --- */
     .ticket-button {
       display: flex;
       justify-content: center;
-      margin: 25px auto 40px;
+      margin: 20px auto 40px;
       opacity: 0;
       animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12.5s;
+      animation-delay: 14s;
       animation-fill-mode: forwards;
+      z-index: 1;
+      position: relative;
     }
 
     .ticket-button a {
@@ -146,10 +138,14 @@
       text-decoration: none;
       padding: 15px 40px;
       font-size: 1.5rem;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 700;
+      font-weight: 500;
       border-radius: 30px;
-      animation: energeticGlow 2s ease-in-out infinite;
+      box-shadow: 0 0 20px #ff80cc, 0 0 40px #ff80cc99, 0 0 60px #ff80cc33;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .ticket-button a:hover {
+      box-shadow: 0 0 25px #ff80cc, 0 0 50px #ff80cc, 0 0 75px #ff80cc;
     }
 
     @media (min-width: 768px) {
@@ -159,10 +155,12 @@
 </head>
 <body>
 
+  <!-- Cercle (logo) -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
 
+  <!-- Texte d’intro -->
   <div class="text-container">
     <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
     <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
@@ -172,10 +170,12 @@
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
+  <!-- Image STARS collée en haut -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
+  <!-- Vidéo teaser -->
   <div class="video-container">
     <iframe
       src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
@@ -185,6 +185,7 @@
     </iframe>
   </div>
 
+  <!-- Bouton Billetterie -->
   <div class="ticket-button">
     <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
