@@ -6,67 +6,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    html,body{margin:0;padding:0;background:#ff80cc;font-family:'Satoshi',sans-serif;overflow:hidden}
-
-    /* Animations */
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    @keyframes pulseShrink{0%{transform:scale(1)}50%{transform:scale(.93)}100%{transform:scale(1)}}
-    @keyframes hidePage{to{opacity:0;pointer-events:none}}
-    @keyframes showPage{to{opacity:1;pointer-events:auto}}
-    @keyframes shine{0%{left:-75%}50%{left:125%}100%{left:125%}}
-
-    /* PAGE 1 */
-    .page1{
-      position:fixed;inset:0;height:100dvh;
-      display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
-      animation:hidePage 1s ease forwards 16s;           /* disparaît 16-17 s */
-      z-index:1;
-    }
-    .page1 img{
-      width:250px;max-width:80%;opacity:0;margin-bottom:20px;
-      animation:fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
-      animation-delay:.5s, 1.5s;                        /* fade 0.5-1.5 s, pulse dès 1.5 s */
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #ff80cc;
+      font-family: 'Satoshi', sans-serif;
+      overflow: hidden; /* Empêche tout scroll réel */
     }
 
-    .text-line{
-      opacity:0;margin:5px 0;line-height:1.8;font-size:1.2rem;
-      animation:fadeIn 1s ease-out forwards;
+    /* ---- Animations ---- */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulseShrink {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(0.93); }
+      100% { transform: scale(1); }
     }
-    .line1{animation-delay:3.5s}
-    .line2{animation-delay:5.5s}
-    .line3{animation-delay:7.5s}
-    .line4{animation-delay:9.5s}
-    .line5{animation-delay:11.5s}
-    .line6{animation-delay:13.5s}
-    @media(min-width:768px){.text-line{font-size:2.5rem}}
+    @keyframes hidePage { to { opacity: 0; pointer-events: none; } }
+    @keyframes showPage { to { opacity: 1; pointer-events: auto; } }
+    @keyframes shine {
+      0%   { left: -75%; }
+      50%  { left: 125%; }
+      100% { left: 125%; }
+    }
 
-    /* PAGE 2 */
-    .page2{
-      position:fixed;inset:0;height:100dvh;
-      display:flex;flex-direction:column;justify-content:space-between;align-items:center;
-      padding:20px 10px;box-sizing:border-box;
-      opacity:0;pointer-events:none;
-      animation:showPage 1s ease forwards 17s;          /* apparaît 17-18 s */
+    /* ---- PAGE 1 ---- */
+    .page1 {
+      position: fixed;
+      inset: 0;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding-top: 4vh;
+      padding-bottom: 4vh;
+      animation: hidePage 1s ease forwards;
+      animation-delay: 11s;
+      z-index: 1;
     }
-    .page2 img{width:100%;height:auto}
-    .page2 iframe{width:100%;height:calc(100vw*.5625);max-height:40vh;border:none}
 
-    /* Bouton */
-    .ticket-button{display:flex;justify-content:center;margin:0}
-    .ticket-button a{
-      background:#000;color:#ff80cc;padding:15px 40px;font-size:1.5rem;font-weight:500;
-      border-radius:30px;position:relative;overflow:hidden;box-shadow:0 0 20px #0006;text-decoration:none;
+    .page1 img {
+      width: 250px;
+      max-width: 80%;
+      opacity: 0;
+      margin-bottom: 4vh;
+      animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
+      animation-delay: 0.5s, 1.5s; /* fondu puis pulsation */
     }
-    .ticket-button a::before{
-      content:'';position:absolute;top:0;left:-75%;width:50%;height:100%;
-      background:linear-gradient(120deg,transparent,#ff80cc66,transparent);
-      transform:skewX(-20deg);animation:shine 2.5s infinite;
+
+    .text-line {
+      opacity: 0;
+      margin: 5px 0;
+      line-height: 1.8;
+      font-size: 1.2rem;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    .line1 { animation-delay: 3.5s; }
+    .line2 { animation-delay: 5.5s; }
+    .line3 { animation-delay: 7.5s; }
+    .line4 { animation-delay: 9.5s; }
+    .line5 { animation-delay: 11.5s; }
+    .line6 { animation-delay: 13.5s; }
+
+    @media (min-width: 768px) {
+      .text-line { font-size: 2.5rem; }
+    }
+
+    /* ---- PAGE 2 ---- */
+    .page2 {
+      position: fixed;
+      inset: 0;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10px;
+      box-sizing: border-box;
+      opacity: 0;
+      pointer-events: none;
+      animation: showPage 1s ease forwards;
+      animation-delay: 14.5s;
+    }
+
+    .page2 img {
+      width: 100%;
+      height: auto;
+    }
+
+    .page2 iframe {
+      width: 100%;
+      height: calc(100vw * 0.5625);
+      max-height: 40vh;
+      border: none;
+    }
+
+    .ticket-button {
+      display: flex;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .ticket-button a {
+      background: #000;
+      color: #ff80cc;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      border-radius: 30px;
+      box-shadow: 0 0 20px #0006;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+    }
+
+    .ticket-button a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
+      transform: skewX(-20deg);
+      animation: shine 2.5s infinite;
     }
   </style>
 </head>
 <body>
 
-  <!-- PAGE 1 : logo + texte -->
+  <!-- Page 1 : logo + texte -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <h1 class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</h1>
@@ -77,15 +148,15 @@
     <h1 class="text-line line6">Il suffira de jouer à…</h1>
   </div>
 
-  <!-- PAGE 2 : stars + vidéo + bouton -->
+  <!-- Page 2 : stars + vidéo + bouton -->
   <div class="page2">
     <img src="stars.png" alt="Titre Stellar">
-
-    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
-            title="Stellar Teaser"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen></iframe>
-
+    <iframe
+      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
+      title="Stellar Teaser"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
     </div>
