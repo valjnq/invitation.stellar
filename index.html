@@ -137,7 +137,7 @@
 
     .ticket-button a {
       background: #000;
-  background-image: linear-gradient(to right, #D163AA, #3B80BB);
+  background-image: linear-gradient(to right, #D163AA, #B96FAE, #3B80BB);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -200,14 +200,6 @@
   pointer-events: none;
 }
 
-.triangle {
-  width: 0;
-  height: 0;
-  border-left: 28px solid black; /* Plus grand et noir */
-  border-top: 18px solid transparent;
-  border-bottom: 18px solid transparent;
-  opacity: 1;
-}
 
 
 
@@ -230,9 +222,16 @@
     <img src="bimbim.png" alt="Titre Stellar">
 <div class="video-launcher" id="video-launcher">
   <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-  <div class="play-button">
-    <div class="triangle"></div>
-  </div>
+<div class="play-button">
+  <svg viewBox="0 0 100 100" width="80" height="80">
+    <!-- Cercle gris semi-transparent -->
+    <circle cx="50" cy="50" r="40" fill="rgba(0, 0, 0, 0.4)" />
+
+    <!-- Triangle transparent (trou) -->
+    <path d="M40,35 L70,50 L40,65 Z" fill="transparent" />
+  </svg>
+</div>
+
 </div>
 
 <div class="video-frame-container" id="video-frame-container" style="display: none;">
