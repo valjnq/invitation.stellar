@@ -36,12 +36,24 @@
     .text-container {
       text-align: center;
       padding: 40px 20px 0 20px;
+      position: relative;
+      height: 4em; /* Réserve de hauteur pour éviter les sauts */
     }
 
     .text-container h1 {
       font-size: 2rem;
       margin: 0;
       line-height: 1.4;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .text-container h1.visible {
+      opacity: 1;
     }
 
     @media (min-width: 768px) {
@@ -62,22 +74,3 @@
         opacity: 1;
       }
       50% {
-        transform: scale(1.07);
-        opacity: 0.9;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="image-container fade-in">
-    <img src="logo.png" alt="Invitation Stellar">
-  </div>
-  <div class="text-container fade-in" style="animation-delay: 0.5s;">
-    <h1>Est-ce que tu as peur du futur&nbsp;?</h1>
-  </div>
-</body>
-</html>
