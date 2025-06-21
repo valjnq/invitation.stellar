@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Invitation Stellar</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Lien vers la police locale -->
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
     html, body {
@@ -16,26 +15,40 @@
       color: black;
     }
 
-    .container {
-      padding: 50px 20px;
+    .image-container {
       text-align: center;
+      padding-top: 30px;
     }
 
-    h1 {
+    .image-container img {
+      width: 200px;
+      max-width: 80%;
+      height: auto;
+    }
+
+    .text-container {
+      text-align: center;
+      padding: 40px 20px 0 20px;
+    }
+
+    .text-container h1 {
       font-size: 2rem;
       margin: 0;
       line-height: 1.4;
     }
 
     @media (min-width: 768px) {
-      h1 {
+      .text-container h1 {
         font-size: 3rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="image-container">
+    <img src="logo.png" alt="Invitation Stellar">
+  </div>
+  <div class="text-container">
     <h1>Est-ce que tu as peur du futur&nbsp;?</h1>
   </div>
 </body>
