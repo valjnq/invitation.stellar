@@ -18,6 +18,11 @@
     @keyframes hidePage {to{opacity:0;pointer-events:none;}}
     @keyframes pulseGlow{0%,100%{box-shadow:0 0 18px rgba(255,255,255,.5);}
                          50%     {box-shadow:0 0 32px rgba(255,255,255,.9);} }
+    @keyframes pulseShrink {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.93); }
+  100% { transform: scale(1); }
+}
 
     /* Page 1 ---------------------------------------------------- */
     .page1{
