@@ -187,7 +187,7 @@
   left: 50%;
   width: 80px;
   height: 80px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4); /* Cercle gris foncé semi-transparent */
   border-radius: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -199,13 +199,12 @@
 .triangle {
   width: 0;
   height: 0;
-  border-style: solid;
-  border-width: 20px 0 20px 35px;
-  border-color: transparent transparent transparent white;
-  background: transparent;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 2px white);
+  border-left: 28px solid black; /* Plus grand et noir */
+  border-top: 18px solid transparent;
+  border-bottom: 18px solid transparent;
+  opacity: 0;
 }
+
 
 
   </style>
@@ -225,10 +224,23 @@
 
   <div class="page2">
     <img src="bimbim.png" alt="Titre Stellar">
-<div class="video-launcher">
+<div class="video-launcher" id="video-launcher">
   <img src="miniature.jpg" alt="Voir la vidéo" id="play-video">
-  <div class="play-button">&#9658;</div>
+  <div class="play-button">
+    <div class="triangle"></div>
+  </div>
 </div>
+
+<div class="video-frame-container" id="video-frame-container" style="display: none;">
+  <iframe 
+    src="https://www.youtube.com/embed/FW7si6AU_FU?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1" 
+    frameborder="0" 
+    allowfullscreen 
+    allow="autoplay; encrypted-media" 
+    style="width: 100%; height: calc(100vw * 0.5625); max-height: 50vh; border-radius: 12px;">
+  </iframe>
+</div>
+
 
 
     <div class="ticket-button">
@@ -285,5 +297,12 @@
       }
     }
   </script>
+  <script>
+  document.getElementById('play-video').addEventListener('click', () => {
+    document.getElementById('video-launcher').style.display = 'none';
+    document.getElementById('video-frame-container').style.display = 'block';
+  });
+</script>
+
 </body>
 </html>
