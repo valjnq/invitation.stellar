@@ -6,151 +6,118 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/satoshi.css">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: #ff80cc;
-      font-family: 'Satoshi', sans-serif;
-      font-weight: 300;
-      color: #000;
-      overflow-x: hidden;
+    /* Reset global */
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    html,body{
+      background:#ff80cc;
+      font-family:'Satoshi',sans-serif;
+      font-weight:300;
+      color:#000;
+      overflow-x:hidden;
     }
 
-    @keyframes pulse {
-      0%   { transform: scale(1); opacity: 1; }
-      50%  { transform: scale(1.07); opacity: 0.9; }
-      100% { transform: scale(1); opacity: 1; }
+    /* Animations de base */
+    @keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.9}100%{transform:scale(1);opacity:1}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes shine{0%{left:-75%}50%{left:125%}100%{left:125%}}
+
+    /* ---------- Logo cercle ---------- */
+    .image-container{
+      text-align:center;
+      padding-top:5px;
+      animation:fadeOut 1s ease-out forwards;
+      animation-delay:10.5s;
+    }
+    @keyframes fadeOut{from{opacity:1}to{opacity:0}}
+    .image-container img{width:250px;max-width:80%;height:auto;animation:pulse 3s ease-in-out infinite}
+
+    /* ---------- Texte intro ---------- */
+    .text-container{
+      text-align:center;
+      padding:10px 15px 0;
+      max-height:1000px;        /* hauteur initiale max */
+      overflow:hidden;
+      animation:collapseText 1s ease-out forwards;
+      animation-delay:10.5s;
+    }
+    @keyframes collapseText{
+      to{opacity:0;max-height:0;padding:0}
+    }
+    .text-line{
+      opacity:0;
+      margin:0;
+      line-height:1.3;
+      font-size:1.6rem;
+      animation:fadeIn .8s ease-out forwards;
+    }
+    .line1{animation-delay:1.5s}.line2{animation-delay:3s}.line3{animation-delay:4.5s}
+    .line4{animation-delay:6s}.line5{animation-delay:7.5s}.line6{animation-delay:9s}
+
+    /* ---------- Image STARS ---------- */
+    .final-title{
+      opacity:0;
+      animation:fadeIn 2s ease-out forwards;
+      animation-delay:12s;
+      text-align:center;
+      margin:0;
+    }
+    .final-title img{width:100%;height:auto;display:block}
+
+    /* ---------- Vidéo ---------- */
+    .video-container{
+      opacity:0;
+      max-width:100%;
+      margin:0 auto;
+      padding:0 10px;
+      animation:fadeIn 2s ease-out forwards;
+      animation-delay:13s;
+    }
+    .video-container iframe{
+      width:100%;
+      height:calc(100vw*0.5625); /* 16:9 */
+      max-height:80vh;
+      border:none;
     }
 
-    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-    @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
-    @keyframes hideText {
-      from { opacity: 1; }
-      to { opacity: 0; }
+    /* ---------- Bouton ---------- */
+    .ticket-button{
+      display:flex;
+      justify-content:center;
+      margin:30px auto 60px;
+      opacity:0;
+      animation:fadeIn 2s ease-out forwards;
+      animation-delay:14s;
+    }
+    .ticket-button a{
+      background:#000;
+      color:#ff80cc;
+      text-decoration:none;
+      padding:15px 40px;
+      font-size:1.5rem;
+      font-weight:500;
+      border-radius:30px;
+      box-shadow:0 0 20px #0006;
+      position:relative;
+      overflow:hidden;
+    }
+    .ticket-button a::before{
+      content:'';
+      position:absolute;
+      top:0;left:-75%;
+      width:50%;height:100%;
+      background:linear-gradient(120deg,transparent,#ff80cc66,transparent);
+      transform:skewX(-20deg);
+      animation:shine 2.5s infinite;
     }
 
-    @keyframes shine {
-      0% { left: -75%; }
-      50% { left: 125%; }
-      100% { left: 125%; }
-    }
-
-    .image-container {
-      text-align: center;
-      padding-top: 5px;
-      animation: fadeOut 1s ease-out forwards;
-      animation-delay: 10.5s;
-      animation-fill-mode: forwards;
-    }
-
-    .image-container img {
-      width: 250px;
-      max-width: 80%;
-      height: auto;
-      animation: pulse 3s ease-in-out infinite;
-    }
-
-    .text-container {
-      text-align: center;
-      padding: 10px 15px 0;
-      animation: hideText 1s ease-out forwards;
-      animation-delay: 10.5s;
-      animation-fill-mode: forwards;
-    }
-
-    .text-line {
-      opacity: 0;
-      margin: 0;
-      line-height: 1.3;
-      font-size: 1.6rem;
-      animation: fadeIn 0.8s ease-out forwards;
-      animation-fill-mode: forwards;
-    }
-
-    .line1 { animation-delay: 1.5s; }
-    .line2 { animation-delay: 3s; }
-    .line3 { animation-delay: 4.5s; }
-    .line4 { animation-delay: 6s; }
-    .line5 { animation-delay: 7.5s; }
-    .line6 { animation-delay: 9s; }
-
-    .final-title {
-      opacity: 0;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12s;
-      animation-fill-mode: forwards;
-      text-align: center;
-      margin: 0;
-    }
-
-    .final-title img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0;
-    }
-
-    .video-container {
-      opacity: 0;
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0 10px;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 13s;
-      animation-fill-mode: forwards;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: calc(100vw * 0.5625);
-      max-height: 80vh;
-      border: none;
-    }
-
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 30px auto 60px;
-      opacity: 0;
-      animation: fadeIn 2s ease-out forwards;
-      animation-delay: 14s;
-      animation-fill-mode: forwards;
-    }
-
-    .ticket-button a {
-      background-color: #000;
-      color: #ff80cc;
-      text-decoration: none;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 500;
-      border-radius: 30px;
-      box-shadow: 0 0 20px #00000066;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .ticket-button a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -75%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
-    }
-
-    @media (min-width: 768px) {
-      .text-line { font-size: 2.5rem; }
-    }
+    /* Responsive texte grand écran */
+    @media(min-width:768px){.text-line{font-size:2.5rem}}
   </style>
 </head>
 <body>
 
-  <!-- Cercle animé -->
+  <!-- Logo animé -->
   <div class="image-container">
     <img src="logo.png" alt="Invitation Stellar">
   </div>
@@ -160,24 +127,22 @@
     <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
     <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
     <h1 class="text-line line3">Aujourd'hui, notre attention est tournée vers une réalité limitée.</h1>
-    <h1 class="text-line line4">Mais demain, elle se portera vers un infini champs des possibles.</h1>
+    <h1 class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
-  <!-- Image STARS -->
+  <!-- Image STARS collée en haut -->
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
   </div>
 
-  <!-- Vidéo responsive -->
+  <!-- Vidéo -->
   <div class="video-container">
-    <iframe
-      src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&modestbranding=1&showinfo=0"
-      title="Stellar Teaser"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
+            title="Stellar Teaser"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
   </div>
 
   <!-- Bouton -->
