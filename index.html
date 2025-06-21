@@ -10,7 +10,7 @@
     html{margin:0;padding:0;overflow:hidden;}
     body{
       margin:0;padding:0;font-family:'Satoshi',sans-serif;
-      background:#ffffff;transition:background-color 1s ease;
+      background:#ff80cc;transition:background-color 1s ease;
     }
 
     /* Animations ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ */
@@ -26,8 +26,13 @@
       padding:0 10px;box-sizing:border-box;z-index:1;
       animation:hidePage 1s ease forwards 16s;
     }
-    .page1 img{width:250px;max-width:80%;opacity:0;
-      animation:fadeIn 1s ease-out forwards 0.5s;}
+.page1 img {
+  width:250px;
+  max-width:80%;
+  opacity:0;
+  animation: fadeIn 1s ease-out forwards 0.5s, pulseShrink 4s ease-in-out infinite 1.5s;
+}
+
 
     .text-wrapper{flex:1;display:flex;flex-direction:column;
       justify-content:space-between;padding-bottom:80px;width:100%;}
