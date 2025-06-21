@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ffffff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
@@ -26,9 +26,11 @@
     @keyframes fadeOut { from {opacity: 1;} to {opacity: 0;} }
     @keyframes fadeWord { from {opacity: 0;} to {opacity: 1;} }
 
-    @keyframes zoomFadeIn {
-      0%   { opacity: 0; transform: scale(1.1); }
-      100% { opacity: 1; transform: scale(1); }
+    /* Nouveau : cacher proprement le texte */
+    @keyframes hideText {
+      0%   { opacity: 1; }
+      99%  { opacity: 0; display: block; }
+      100% { opacity: 0; display: none; }
     }
 
     /* ---------- Cercle ---------- */
@@ -48,7 +50,7 @@
     .text-container {
       text-align: center;
       padding: 10px 15px 0;
-      animation: fadeOut 1s ease-out forwards;
+      animation: hideText 1s ease-out forwards;
       animation-delay: 13s;
       animation-fill-mode: forwards;
     }
@@ -80,20 +82,30 @@
     .word-2 { animation-delay: 9.5s; }
     .word-3 { animation-delay: 10s; }
 
-    /* ---------- Image finale (stars.png) ---------- */
+    /* ---------- Image finale (Titre Stellar) ---------- */
     .final-title {
       opacity: 0;
       text-align: center;
-      margin-top: 20px;
-      animation: zoomFadeIn 2s ease-out forwards;
+      margin-top: -20px;
+      animation: fadeIn 2s ease-out forwards;
       animation-delay: 14s;
       animation-fill-mode: forwards;
     }
 
     .final-title img {
-      max-width: 600px;
-      width: 80%;
+      max-width: 80%;
       height: auto;
+    }
+
+    /* Ajustement pour mobile */
+    @media (max-width: 767px) {
+      .final-title {
+        position: absolute;
+        top: 320px; /* ajuste si nécessaire */
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
     }
 
     @media (min-width: 768px) {
@@ -122,7 +134,7 @@
   </div>
 
   <div class="final-title">
-    <img src="stars.png" alt="étoiles">
+    <img src="stars.png" alt="Titre Stellar">
   </div>
 
 </body>
