@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #04fbff;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -30,27 +30,18 @@
     }
 
     /* --- PAGE 1 --- */
-.page1 {
-  position: fixed;
-  inset: 0;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0px 10px 0px;
-  box-sizing: border-box;
-  text-align: center;
-  animation: hidePage 1s ease forwards 16.5s;
-  z-index: 1;
-}
-
-
-    .center-content {
+    .page1 {
+      position: fixed;
+      inset: 0;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      max-width: 100%;
+      text-align: center;
+      padding: 20px 10px 30px;
+      box-sizing: border-box;
+      animation: hidePage 1s ease forwards 16.5s;
+      z-index: 1;
     }
 
     .page1 img {
@@ -59,10 +50,13 @@
       opacity: 0;
       animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
       animation-delay: 0.5s, 1.5s;
-      margin-bottom: 20px;
     }
 
-    .text-zone {
+    .text-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       width: 100%;
     }
 
@@ -70,10 +64,11 @@
       display: block;
       opacity: 0;
       font-size: 1.2rem;
-      line-height: 1.6;
-      margin: 0 0 6px 0;
+      line-height: 1.5;
+      margin: 5px 0;
       animation: fadeIn 1s ease-out forwards;
       text-align: center;
+      max-width: 90%;
       font-weight: 700;
     }
 
@@ -155,26 +150,26 @@
 
   <!-- Page 1 -->
   <div class="page1">
-    <div class="center-content">
-      <img src="logo.png" alt="Invitation Stellar">
-      <div class="text-zone">
-        <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
-        <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
-        <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
-        <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
-        <p class="text-line line5">Il suffira de mettre un casque.</p>
-        <p class="text-line line6">Il suffira de jouer à…</p>
-      </div>
+    <img src="logo.png" alt="Invitation Stellar">
+    <div class="text-wrapper">
+      <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
+      <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
+      <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
+      <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
+      <p class="text-line line5">Il suffira de mettre un casque.</p>
+      <p class="text-line line6">Il suffira de jouer à…</p>
     </div>
   </div>
 
   <!-- Page 2 -->
   <div class="page2">
     <img src="stars.png" alt="Titre Stellar">
+
     <iframe src="https://www.youtube.com/embed/FW7si6AU_FU?rel=0&amp;modestbranding=1&amp;showinfo=0"
             title="Stellar Teaser"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
+
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
     </div>
