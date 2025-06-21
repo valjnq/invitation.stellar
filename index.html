@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #ff80cc;
+      background: #ffffff;
       font-family: 'Satoshi', sans-serif;
       font-weight: 300;
       color: #000;
@@ -30,9 +30,17 @@
       100% { opacity: 0; display: none; }
     }
 
+    @keyframes energeticGlow {
+      0%, 100% {
+        box-shadow: 0 0 10px #ff80cc, 0 0 20px #ff80cc inset;
+      }
+      50% {
+        box-shadow: 0 0 25px #ff80cc, 0 0 40px #ff80cc inset;
+      }
+    }
+
     @keyframes shine {
       0% { left: -75%; }
-      50% { left: 125%; }
       100% { left: 125%; }
     }
 
@@ -75,45 +83,41 @@
     .line5 { animation-delay: 7.5s; }
     .line6 { animation-delay: 9s; }
 
-    .ticket-button {
-      display: flex;
-      justify-content: center;
-      margin: 20px auto;
+    .final-title {
+      position: relative;
+      display: inline-block;
       opacity: 0;
+      text-align: center;
+      margin: 0 auto;
+      margin-top: -10px;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
       animation-fill-mode: forwards;
     }
 
-    .ticket-button a {
-      background-color: #000;
-      color: #ff80cc;
-      text-decoration: none;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      font-weight: 500;
-      border-radius: 30px;
-      box-shadow: 0 0 20px #00000066;
+    .final-title img {
+      max-width: 90%;
+      height: auto;
       position: relative;
-      overflow: hidden;
+      z-index: 1;
     }
 
-    .ticket-button a::before {
+    .final-title::after {
       content: '';
       position: absolute;
       top: 0;
       left: -75%;
       width: 50%;
       height: 100%;
-      background: linear-gradient(120deg, transparent, #ff80cc66, transparent);
-      transform: skewX(-20deg);
-      animation: shine 2.5s infinite;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+      transform: skewX(-25deg);
+      animation: shine 3s ease-in-out infinite;
     }
 
     .video-container {
       opacity: 0;
       max-width: 800px;
-      margin: 10px auto;
+      margin: 20px auto 0;
       padding: 0 10px;
       animation: fadeIn 2s ease-out forwards;
       animation-delay: 12s;
@@ -126,18 +130,26 @@
       border: none;
     }
 
-    .final-title {
+    .ticket-button {
+      display: flex;
+      justify-content: center;
+      margin: 25px auto 40px;
       opacity: 0;
-      text-align: center;
-      margin-top: 10px;
       animation: fadeIn 2s ease-out forwards;
-      animation-delay: 12s;
+      animation-delay: 12.5s;
       animation-fill-mode: forwards;
     }
 
-    .final-title img {
-      max-width: 90%;
-      height: auto;
+    .ticket-button a {
+      background-color: #000;
+      color: #ff80cc;
+      text-decoration: none;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 700;
+      border-radius: 30px;
+      animation: energeticGlow 2s ease-in-out infinite;
     }
 
     @media (min-width: 768px) {
@@ -153,19 +165,15 @@
 
   <div class="text-container">
     <h1 class="text-line line1">Est-ce que tu as peur du futur ?</h1>
-    <h1 class="text-line line2">Rassure-toi, tu n'est pas seul.</h1>
+    <h1 class="text-line line2">Rassure-toi, tu n'es pas seul.</h1>
     <h1 class="text-line line3">Aujourd'hui, notre attention est tournée vers une réalité limitée.</h1>
-    <h1 class="text-line line4">Mais demain, elle se portera vers un infini champs des possibles.</h1>
+    <h1 class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</h1>
     <h1 class="text-line line5">Il suffira de mettre un casque.</h1>
     <h1 class="text-line line6">Il suffira de jouer à...</h1>
   </div>
 
   <div class="final-title">
     <img src="stars.png" alt="Titre Stellar">
-  </div>
-
-  <div class="ticket-button">
-    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
 
   <div class="video-container">
@@ -175,6 +183,10 @@
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen>
     </iframe>
+  </div>
+
+  <div class="ticket-button">
+    <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
   </div>
 
 </body>
