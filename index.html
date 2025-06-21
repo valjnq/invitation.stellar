@@ -9,7 +9,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #33fff6;
+      background: #ff80cc;
       font-family: 'Satoshi', sans-serif;
       overflow: hidden;
     }
@@ -39,7 +39,7 @@
       justify-content: flex-start;
       align-items: center;
       text-align: center;
-      padding: 0px 10px 0;
+      padding: 0px;
       box-sizing: border-box;
       animation: hidePage 1s ease forwards 16.5s;
       z-index: 1;
@@ -52,6 +52,16 @@
       margin-bottom: 20px;
       animation: fadeIn 1s ease-out forwards, pulseShrink 4s ease-in-out infinite;
       animation-delay: 0.5s, 1.5s;
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      width: 100%;
+      padding: 0 10px 20px;
+      box-sizing: border-box;
     }
 
     .text-line {
@@ -145,12 +155,14 @@
   <!-- Page 1 -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
-    <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
-    <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
-    <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
-    <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
-    <p class="text-line line5">Il suffira de mettre un casque.</p>
-    <p class="text-line line6">Il suffira de jouer à…</p>
+    <div class="text-container">
+      <p class="text-line line1">Est-ce que tu as peur du futur&nbsp;?</p>
+      <p class="text-line line2">Rassure-toi, tu n’es pas seul.</p>
+      <p class="text-line line3">Aujourd’hui, notre attention est tournée vers une réalité limitée.</p>
+      <p class="text-line line4">Mais demain, elle se portera vers un infini champ des possibles.</p>
+      <p class="text-line line5">Il suffira de mettre un casque.</p>
+      <p class="text-line line6">Il suffira de jouer à…</p>
+    </div>
   </div>
 
   <!-- Page 2 -->
