@@ -49,22 +49,13 @@
     @media(min-width:768px){.text-line{font-size:2.5rem;font-weight:300;}}
 
     /* Page 2 ---------------------------------------------------- */
-.page2 {
-  position: fixed;
-  inset: 0;
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 10px;
-  box-sizing: border-box;
-  pointer-events: none;
-  background: transparent;
-}
+    .page2{
+      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;
+      justify-content:space-between;align-items:center;padding:20px 10px;
+      box-sizing:border-box;pointer-events:none;background:transparent;
+    }
     .page2.fade-active{pointer-events:auto;}
-.spacer {
-  flex-grow: 1;
-}
+
     .page2 img,.ticket-button,#youtube-container > img{opacity:0;animation:fadeIn 1s ease-out forwards;}
     .page2 img            {animation-delay:17s;}
     #youtube-container img{animation-delay:17.7s;}          /* NOUVEAU */
@@ -81,7 +72,7 @@
   .ticket-button {
   display: flex;
   justify-content: center;
-  margin-bottom: 0;
+  margin-bottom: 40px;
 }
 
 .ticket-button a {
