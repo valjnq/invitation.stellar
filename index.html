@@ -133,9 +133,7 @@ window.onload = () => {
         id="yt-thumb" 
         style="cursor: pointer; width: 100%; height: auto; border-radius: 12px; opacity: 0; animation: fadeIn 1s ease-out forwards;">
     `;
-setTimeout(() => {
-  document.querySelector('.ticket-button a').classList.add('pulse');
-}, 19100);
+
     // 3. Remplacement de l'image par l'iframe au clic
     document.getElementById('yt-thumb').addEventListener('click', () => {
       cont.innerHTML = `
