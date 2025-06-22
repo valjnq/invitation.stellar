@@ -13,69 +13,85 @@
       background:#ff80cc;transition:background-color 1s ease;
     }
 
-    /* Animations ------------------------------------------------ */
+    /* Animations ­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­­ */
     @keyframes fadeIn   {from{opacity:0;} to{opacity:1;}}
     @keyframes hidePage {to{opacity:0;pointer-events:none;}}
     @keyframes pulseGlow{0%,100%{box-shadow:0 0 18px rgba(255,255,255,.5);}
                          50%     {box-shadow:0 0 32px rgba(255,255,255,.9);} }
-    @keyframes pulseShrink{0%{transform:scale(1);}50%{transform:scale(.93);}100%{transform:scale(1);}}
+    @keyframes pulseShrink {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.93); }
+  100% { transform: scale(1); }
+}
 
-    /* ---------- Page 1 ---------- */
+    /* Page 1 ---------------------------------------------------- */
     .page1{
-      position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;
-      align-items:center;text-align:center;padding:0 10px;box-sizing:border-box;z-index:1;
+      position:fixed;inset:0;height:100dvh;display:flex;
+      flex-direction:column;align-items:center;text-align:center;
+      padding:0 10px;box-sizing:border-box;z-index:1;
       animation:hidePage 1s ease forwards 16s;
     }
-    .page1 img{
-      width:250px;max-width:80%;opacity:0;
-      animation:fadeIn 1s ease-out forwards .5s, pulseShrink 4s ease-in-out infinite 1.5s;
-    }
-    .text-wrapper{flex:1;display:flex;flex-direction:column;justify-content:space-between;
-      padding-bottom:80px;width:100%;}
-    .text-line{opacity:0;font-size:1.2rem;line-height:1.4;font-weight:700;margin:2px auto;width:90%;
-      text-align:center;animation:fadeIn 1s ease-out forwards;}
-    .line1{animation-delay:3.5s}.line2{animation-delay:5.5s}.line3{animation-delay:7.5s}
-    .line4{animation-delay:9.5s}.line5{animation-delay:11.5s}.line6{animation-delay:13.5s}
+.page1 img {
+  width:250px;
+  max-width:80%;
+  opacity:0;
+  animation: fadeIn 1s ease-out forwards 0.5s, pulseShrink 4s ease-in-out infinite 1.5s;
+}
+
+
+    .text-wrapper{flex:1;display:flex;flex-direction:column;
+      justify-content:space-between;padding-bottom:80px;width:100%;}
+    .text-line{opacity:0;font-size:1.2rem;line-height:1.4;font-weight:700;
+      margin:2px auto;width:90%;text-align:center;animation:fadeIn 1s ease-out forwards;}
+    .line1{animation-delay:3.5s}.line2{animation-delay:5.5s}
+    .line3{animation-delay:7.5s}.line4{animation-delay:9.5s}
+    .line5{animation-delay:11.5s}.line6{animation-delay:13.5s}
     @media(min-width:768px){.text-line{font-size:2.5rem;font-weight:300;}}
 
-    /* ---------- Page 2 ---------- */
+    /* Page 2 ---------------------------------------------------- */
     .page2{
       position:fixed;inset:0;height:100dvh;display:flex;flex-direction:column;
-      align-items:center;padding:20px 10px;box-sizing:border-box;pointer-events:none;
-      background:transparent;
+      justify-content:space-between;align-items:center;padding:20px 10px;
+      box-sizing:border-box;pointer-events:none;background:transparent;
     }
     .page2.fade-active{pointer-events:auto;}
 
-    /* Logo */
-    .page2 img.logo{
-      width:100%;max-width:800px;height:auto;margin-top:10px;
-      opacity:0;animation:fadeIn 1s ease-out forwards 17s;
-    }
+    .page2 img,.ticket-button,#youtube-container > img{opacity:0;animation:fadeIn 1s ease-out forwards;}
+    .page2 img            {animation-delay:17s;}
+    #youtube-container img{animation-delay:17.7s;}          /* NOUVEAU */
+    .ticket-button        {animation-delay:18.4s;}
+
+    .page2 img{width:100%;height:auto;margin-top: 10px;}
 
     /* Conteneur vidéo / miniature */
-    #youtube-container{
-      width:100%;max-width:800px;aspect-ratio:16/9;border-radius:12px;overflow:hidden;
-      display:flex;justify-content:center;align-items:center;
-    }
-    #youtube-container img{
-      width:100%;height:100%;object-fit:cover;cursor:pointer;opacity:0;
-      animation:fadeIn 1s ease-out forwards 17.7s;
-    }
+    #youtube-container{width:100%;max-width:800px;aspect-ratio:16/9;
+      border-radius:12px;overflow:hidden;display:flex;justify-content:center;align-items:center;}
+    #youtube-container img{width:100%;height:100%;object-fit:cover;cursor:pointer;} /* NOUVEAU */
 
-    /* Espace flexible pour centrer l’ensemble */
-    .spacer{flex:1 1 0;}
+    /* Bouton billetterie --------------------------------------- */
+  .ticket-button {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
 
-    /* Bouton billetterie */
-    .ticket-button{opacity:0;animation:fadeIn 1s ease-out forwards 18.4s;}
-    .ticket-button a{
-      background:#000;color:#fff;padding:15px 40px;font-size:1.5rem;font-weight:700;
-      border-radius:30px;text-decoration:none;animation:pulseGlow 2.5s ease-in-out infinite;
-    }
+.ticket-button a {
+  background: #000;
+  color: #fff;
+  padding: 15px 40px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+  animation: fadeIn 1s ease-out forwards 18.4s, pulseGlow 2.5s ease-in-out infinite;
+}
+
+  
   </style>
 </head>
 <body>
 
-  <!-- Page 1 -->
+  <!-- Page 1 ---------------------------------------------------- -->
   <div class="page1">
     <img src="logo.png" alt="Invitation Stellar">
     <div class="text-wrapper">
@@ -88,44 +104,48 @@
     </div>
   </div>
 
-  <!-- Page 2 -->
+  <!-- Page 2 ---------------------------------------------------- -->
   <div class="page2">
-    <img src="bimbim.png" alt="Titre Stellar" class="logo">
-    <div id="youtube-container"></div>
-    <div class="spacer"></div>
+    <img src="bimbim.png" alt="Titre Stellar">
+    <div id="youtube-container"></div>   <!-- miniature > lecteur -->
     <div class="ticket-button">
       <a href="https://www.billetweb.fr/stellar" target="_blank">BILLETTERIE</a>
     </div>
   </div>
 
-  <script>
-    window.onload = () => {
-      /* 1 — Passe le fond au noir et rend la page 2 interactive à 16 s */
-      setTimeout(() => {
-        document.body.style.backgroundColor = '#000';
-        document.querySelector('.page2').classList.add('fade-active');
-      }, 16000);
+<script>
+window.onload = () => {
+  // 1. Transition du fond rose vers noir + activation page2 à 16s
+  setTimeout(() => {
+    document.querySelector('.page2').classList.add('fade-active');
+    document.body.style.backgroundColor = '#000000';
+  }, 16000);
 
-      /* 2 — Injecte la miniature à 17,7 s */
-      setTimeout(() => {
-        const cont = document.getElementById('youtube-container');
-        cont.innerHTML = `
-          <img src="miniaturev2.jpg" id="yt-thumb" alt="Voir la vidéo">
-        `;
+  // 2. Affichage de la miniature à 17.7s
+  setTimeout(() => {
+    const cont = document.getElementById('youtube-container');
+    cont.innerHTML = `
+      <img 
+        src="miniaturev2.jpg" 
+        alt="Voir la vidéo" 
+        id="yt-thumb" 
+        style="cursor: pointer; width: 100%; height: auto; border-radius: 12px; opacity: 0; animation: fadeIn 1s ease-out forwards;">
+    `;
 
-        /* 3 — Remplace la miniature par le lecteur quand on clique */
-        document.getElementById('yt-thumb').addEventListener('click', () => {
-          cont.innerHTML = `
-            <iframe
-              src="https://www.youtube.com/embed/FW7si6AU_FU?autoplay=1&rel=0&modestbranding=1&controls=1"
-              allow="autoplay; encrypted-media"
-              allowfullscreen
-              style="width:100%;height:100%;border:none;">
-            </iframe>`;
-        });
-      }, 17700);
-    };
-  </script>
+    // 3. Remplacement de l'image par l'iframe au clic
+    document.getElementById('yt-thumb').addEventListener('click', () => {
+      cont.innerHTML = `
+        <iframe 
+          src="https://www.youtube.com/embed/FW7si6AU_FU?autoplay=1&rel=0&modestbranding=1&controls=1" 
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          style="width: 100%; height: 100%; border: none;">
+        </iframe>`;
+    });
+  }, 17700);
+};
+</script>
+
 
 </body>
 </html>
